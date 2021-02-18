@@ -10,7 +10,8 @@ const User =require('./model/User')
 const helmet = require('helmet');
 const compression = require('compression');
 
-const db=require('./util/database').mongoURL;
+require('dotenv').config('./.env')
+let db=`mongodb+srv://${process.env.Mongo_USER}:${process.env.Mongo_PASSWORD}@cluster0.gpz6t.mongodb.net/NoticeBoard?retryWrites=true&w=majority`
 const userRoute=require('./routes/user');
 const adminRoute= require('./routes/admin');
 const authRoute= require('./routes/auth');
@@ -81,5 +82,6 @@ app.use(compression());
 		app.listen(port)
 	})
 	.catch(error=>{
+		console.log(db)
 		console.log(error);
 	})
