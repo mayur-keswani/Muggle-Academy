@@ -1,0 +1,40 @@
+<%- include('../includes/header.ejs')%>
+ <style>
+	 body{
+		background-image:url("https://image.freepik.com/free-photo/crumpled-paper-background_1373-412.jpg")
+	 }
+	 .container{
+		 display: flex;
+		 align-items: center;
+	 }
+	 .notice-form{
+		/* border: 1px solid black; */
+		width: 80%;
+		height: 50vh;
+		background-color: white
+	 }
+ </style>
+</head>
+<body>
+	<%- include('../includes/navigation.ejs')%>
+	<div class="container p-3 mt-5">
+		<form class="notice-form p-2" action="/issue-notice" method="POST">
+			<h2 class="text-lead text-center"> Fill Your Notice 👇 </h2>
+			<div class="form-group">
+			  <label for="exampleFormControlInput1">Subject</label>
+			  <input type="text" name="subject" class="form-control" id="exampleFormControlInput1" placeholder="title/subject for issuing notice">
+			</div>
+	
+			<div class="form-group">
+			  <label for="exampleFormControlTextarea1">Content</label>
+			  <textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="3"></textarea>
+			</div>
+			<input class="form-control form-control-sm" type="text" name="designation" placeholder="Enter Your Designation">
+			<span>Note: your username  will be similar to your account'name </span>
+
+			<div class="text-center"><button type="submit" class="btn btn-outline-success btn-lg">Submit</button></div>
+		</form>
+	</div>
+	
+	<%- include('../includes/footer.ejs')%>
+</body>

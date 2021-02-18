@@ -1,0 +1,55 @@
+<%- include('../includes/header.ejs')%>
+<link rel="stylesheet" href="/assets/customCSS/signin.css">
+</head>
+<body>
+	<header class="jumbotron bg-primary" style="color:azure; font-family: Verdana, Geneva, Tahoma, sans-serif;" >
+		<h2>SIGN IN</h2>
+	</header>
+    <% if(message){ %>
+        <p class="text-danger text-center"><%=message%></p>
+    <%}%>
+	<div class="container bg-light pt-5">
+        <div class="row">
+            <div class="col-lg-12 signinBox">
+                   <!-- <h2>SignIn</h2> --> 
+                 <form action="/signin" method="post">
+
+                    <div class="form-group">
+                        <div class="input-group">
+                           <div class="input-group-prepend">
+                               <div class="input-group-text">@</div>
+                           </div>
+                           <input type="text" name="username" placeholder="USERNAME" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                           <div class="input-group-prepend">
+                               <div class="input-group-text">@gmail.com</div>
+                           </div>
+                           <input type="text" name="email" placeholder="EMAIL" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                           <input type="text" name="password" placeholder="password" class="form-control">
+                        </div>
+                    </div>
+					<select class="custom-select custom-select-md mb-3" name="role">
+						<option value="admin">Admin</option>
+						<option value="student">Student</option>
+					</select>
+
+                    <input type="submit" value="SUBMIT" class="btn btn-block btn-outline-primary"><br>
+                 </form> 
+            </div>
+               
+            <div class="col-lg-5 offset-7 loginBox">
+				<p class="d-inline">Already have an account</p>
+                <a href="/login" class="btn btn-primary ">LOGIN</a>
+            </div>
+        </div>  <!--end of row-->
+
+    </div>      <!--end of container-->
+<%- include('../includes/footer.ejs')%>
+</body>

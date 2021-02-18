@@ -1,0 +1,37 @@
+<%- include('../includes/header.ejs')%>
+<style>
+	body{
+		background-image:url("https://image.freepik.com/free-photo/crumpled-paper-background_1373-412.jpg")
+ 	}
+	.archieve{
+		border-radius: 50% 50% 0% 0%;
+	 }
+</style>
+</head>
+<body>
+	<%- include('../includes/navigation.ejs') %>
+	<% if(notices.length==0) { %>
+		<p class="text-center text-primary">No Saved Notice yet</p>
+	<% } %>
+	<div class="row">
+	 <% notices.forEach((notice,index)=>{ %>
+		<div class="col-lg-4 pb-0">
+		  <form action="/notices/<%=notice.noticeId._id%>" method="POST">
+			<div class="card m-3 pr-0">
+				<h5 class="card-header"><%= notice.noticeId.date%></h5>
+				<div class="card-body pb-0 pl-2 pr-0">
+				  <h5 class="card-title"><%= notice.noticeId.subject%></h5>
+
+				  <button type="submit" class="text-center btn btn-primary">Look inside -></button>
+				  
+				</div>
+			</div>
+		 </form>		
+		</div>
+	 <% }) %>
+
+	</div>
+
+	<%- include('../includes/footer.ejs') %>
+</body>
+</html>

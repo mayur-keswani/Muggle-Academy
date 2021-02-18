@@ -1,0 +1,38 @@
+<%- include('../includes/header.ejs') %>
+ <style>
+	 .navbar{
+		 
+	 }
+	 .container{
+		 display: flex;
+		 align-items: center;
+		 justify-content: center;
+	 }
+	 .notice-paper{
+		 background-image: url("https://images.unsplash.com/photo-1586074299757-dc655f18518c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80");
+		 width: 50%;
+		 height: 85vh;
+	 }
+ </style>
+</head>
+<body>
+	<%- include('../includes/navigation.ejs') %>
+	<div><a href="/download-notice/<%=notice._id%>" class="float-right my-3 mx-5 btn btn-outline-secondary btn-lg">Download</a></div>
+	<div class="container">
+		<div class="notice-paper my-4">
+			<div class="h2 text-center">Gls University</div>
+			<div class="h3 text-center mt-3">Notice</div>
+			<p><%= notice.date %></p>
+			<div class="h4 text-center"><%= notice.subject %></div>
+			<textarea class="mx-4 my-5" cols="65" rows="10" readonly><%= notice.content %></textarea>
+			<p class="my-2 mx-5"><b><%= username %></b></p>
+			<p class="my-2 mx-4"><u><%= notice.designation %></u></p>
+		</div>	
+	</div>
+
+
+	<div class="sharethis-inline-share-buttons text-center fixed-bottom"></div>
+	<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=602cc7da5b508c0011025877&product=sticky-share-buttons' async='async'></script>	
+	<%- include('../includes/footer.ejs')%>
+</body>
+</html>

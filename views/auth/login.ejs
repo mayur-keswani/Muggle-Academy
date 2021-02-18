@@ -1,0 +1,59 @@
+<%- include('../includes/header.ejs')%>
+
+	<link rel="stylesheet" href="/assets/customCSS/login.css">
+
+</head>
+<body>
+<header class="jumbotron bg-primary" style="color:azure; font-family: Verdana, Geneva, Tahoma, sans-serif;" >
+   <h2>LOGIN</h2>
+</header>
+
+
+<% if(message){ %>
+	<p class="text-danger text-center"><%=message%></p>
+<% } %>
+
+
+<div class="container bg-light pt-5">
+	<div class="row" >
+		<div class="col-lg-12 loginBox">
+			   <!-- <h2>LOGIN</h2> -->
+				<form action="/login" method="post">
+				<div class="form-group">
+						<div class="input-group">
+						   <input type="text" name="username" placeholder="USERNAME" class="form-control">
+						</div>
+				</div>
+				<div class="form-group">
+					<div class="input-group">
+					   <div class="input-group-prepend">
+						   <div class="input-group-text">@gmail.com</div>
+					   </div>
+					   <input type="text" name="email" placeholder="EMAIL" class="form-control">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="input-group">
+					   <input type="text" name="password" placeholder="password" class="form-control">
+					</div><small class="text-muted">Forget password<a href="/">CLICK HERE</a></small>
+				</div>
+				<input type="submit" value="SUBMIT" class="btn btn-block btn-outline-primary"><br>
+				</form>
+				
+		</div>
+
+		<div class="col-lg-5 offset-7 signBox">
+			<p class="d-inline">Don't have an account</p>
+			<a href="/signin" class="btn btn-primary">SIGN IN</a>
+		</div>
+	</div>  <!--end of row-->
+
+</div>      <!--end of container-->
+
+
+
+<%- include('../includes/footer.ejs')%>
+</body>
+
+  
+  

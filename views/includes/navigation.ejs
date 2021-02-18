@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<a class="navbar-brand" href="#">Mayur-NoticeBoard</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+	  <span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarText">
+	  <ul class="navbar-nav mr-auto">
+		<li class="nav-item active">
+		  <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+		</li>
+		<li class="nav-item">
+		  <a class="nav-link" href="/photos">Photos</a>
+		</li>
+		<li class="nav-item">
+		  <a class="nav-link" href="/notices">Notices</a>
+		</li>
+		<% if(isAutherized){ %>
+		<li class="nav-item">
+			<a class="nav-link" href="/upload-post">Add Photos</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="/issue-notice">Issue Notice</a>
+		</li>
+		<% } %>
+		
+	  </ul>
+	  
+		<span class="navbar-text d-inline mr-4 ">
+		  <% if(isAutherized){ %>	
+			<div class="dropdown d-inline">
+				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+				</button>
+				<div class="dropdown-menu bg-dark text-dark" aria-labelledby="dropdownMenuButton">
+				  <a class="dropdown-item" href="/profile">profile</a>
+				  <a class="dropdown-item" href="/archieve">archieve notice</a>
+				  <a class="dropdown-item" href="/logout">logout</a>
+				</div>
+			</div>
+			<% }else{%>
+				<a href="/signin" class="btn btn-info">Sign in</a>
+			<% } %>
+			<% if(typeof username != 'undefined'){ %>
+				<div class="d-inline ml-1">Hello <%= username%>!</div>
+			<% } else { %>
+				<div class="d-inline ml-1">Hello Boy!</div>
+			<% } %>
+		  </span>
+
+
+	</div>
+  </nav>

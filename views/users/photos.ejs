@@ -1,0 +1,39 @@
+<%- include("../includes/header")%>
+ <style>
+	 .post{
+		margin: 5px;
+		width: 100%;
+		
+		border: 1px solid black;
+	 }
+ </style>
+</head>
+<body>
+	<%- include("../includes/navigation.ejs") %>
+
+	<div class="photos">
+		<div class="h2">Posts</div>
+		<div class="row">
+			<% if(posts.length==0){ %>
+				<p class="h4 text-lead mx-5">No post yet...</p>
+			<% } %>
+			<% posts.forEach(post=>{ %>
+				<div class="col-lg-3"> 
+					<div class="card post" >
+						<img class="card-img-top" src="<%=post.image%>" height="240px" alt="Card image cap">
+						<div class="card-body">
+						  <p class="card-text">
+							  <h3><%=post.heading%></h3>
+							  <p><%=post.description%></p>
+						  </p>
+						</div>
+					  </div>
+				</div>
+			<% }) %>		
+		</div>
+	</div>
+
+
+	<%- include("../includes/footer.ejs") %>
+</body>
+</html>
