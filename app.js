@@ -18,6 +18,8 @@ const authRoute= require('./routes/auth');
 
 const port=process.env.PORT || 3000;
 const hostname='127.0.0.1';
+
+// let db='mongodb+srv://process.env.MongoUSER:process.env.PASSWORD@cluster0.gpz6t.mongodb.net/NoticeBoard?retryWrites=true&w=majority'
 const store=new MongoDbStore({
 	uri:db,
 	collection:"session"
