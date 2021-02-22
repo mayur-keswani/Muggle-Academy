@@ -6,16 +6,17 @@
   font-family: 'Poppins', sans-serif;
 }
 html,body{
-  display: grid;
-  height: 100%;
+  /* display: grid; */
+  /* height: 100%; */
   text-align: center;
 }
 .navbar{
 	height: 7vh;
+  width: 100%;
 }
 .container{
   height: 350px;
-  width: 430px;
+  /* width: 430px; */
   position: relative;
 }
 .container .wrapper{
@@ -46,6 +47,8 @@ html,body{
   width: 100%;
   object-fit: cover;
 }
+
+
 .wrapper .icon{
   font-size: 100px;
   color: #9658fe;
@@ -96,6 +99,32 @@ html,body{
   font-weight: 500;
   letter-spacing: 1px;
   text-transform: uppercase;
+  text-align: center;
   cursor: pointer;
   background: linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);
+}
+@media(min-width:500px){
+  .wrapper .image{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .wrapper img{
+    height: 100%;
+    width: 70%;
+    object-fit: cover;
+  }
+  .container #custom-btn{
+    
+    margin-top: 10px !important;
+    width: 50%;
+    margin: auto;
+    
+  }
+}
+@media(min-width:500px){
+  
 }

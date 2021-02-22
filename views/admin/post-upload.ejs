@@ -8,7 +8,7 @@
   <form action="/upload-post" method="POST" enctype="multipart/form-data">
 	<div class="details-zone">
 		<div class="row text-center">
-		  <div class="col-lg-4 offset-4">
+		  <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-12 ">
 			
 				<div class="form-group">
 				  <label for="exampleForm">Heading</label>
@@ -30,29 +30,35 @@
 		  </div>	
 		</div>
 	</div>
-    <div class="container">
-      <div class="wrapper">
-        <div class="image">
-          <img src="" alt="">
+   <div class="row">
+     <div class="col">
+      <div class="container">
+        <div class="wrapper">
+          <div class="image">
+            <img src="" alt="">
+          </div>
+          <div class="content">
+            <div class="icon">
+              <i class="fas fa-cloud-upload-alt"></i>
+            </div>
+            <div class="text">
+              No file chosen, yet!
+            </div>
+          </div>
+          <div id="cancel-btn">
+            <i class="fas fa-times"></i>
+          </div>
+          <div class="file-name" >
+            File name here
+          </div>
         </div>
-	    	<div class="content">
-          <div class="icon">
-			      <i class="fas fa-cloud-upload-alt"></i>
-		      </div>
-		      <div class="text">
-			      No file chosen, yet!
-		      </div>
-        </div>
-		    <div id="cancel-btn">
-		    	<i class="fas fa-times"></i>
-		    </div>
-		    <div class="file-name">
-			    File name here
-	    	</div>
-    	</div>
-    	<input typr="file" name="myupload" onclick="defaultBtnActive()" id="custom-btn" placeholder="Choose a file"></button>
-      <input id="default-btn" type="file" name="myupload" hidden>
-    </div>
+        <input typr="file" name="myupload" onclick="defaultBtnActive()" id="custom-btn" placeholder="Choose a file"></button>
+        <input id="default-btn" type="file" name="myupload" hidden>
+      </div>
+     </div>
+   </div>
+    
+
     <div>	<input type="submit" class="btn btn-success btn-lg mt-5"></input></div>
     </form>
 	<script>
