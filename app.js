@@ -9,10 +9,22 @@ const multer=require('multer')
 const User =require('./model/User')
 const helmet = require('helmet');
 const compression = require('compression');
+const cloudinary = require('cloudinary');
+
+
 
 require('dotenv').config('./.env')
 let db=`mongodb+srv://${process.env.Mongo_USER}:${process.env.Mongo_PASSWORD}@cluster0.gpz6t.mongodb.net/NoticeBoard?retryWrites=true&w=majority`
-const userRoute=require('./routes/user');
+// Cloud_NAME= process.env.Cloud_NAME
+cloudinary.config({ 
+	cloud_name:process.env.Cloud_NAME, 
+	api_key: process.env.Cloud_API_KEY, 
+	api_secret:process.env.Cloud_API_SECRET
+  });
+
+
+
+const userRoute=require('./routes/user'); 
 const adminRoute= require('./routes/admin');
 const authRoute= require('./routes/auth');
 
@@ -51,6 +63,7 @@ app.use(multer({ storage: storage }).single('myupload'));		// handling multipart
 app.use('/public/assets/upload',express.static('./public/assets/upload'))
 
 app.use((req,res,next)=>{
+	
 	if(!req.session.user){
 		return next();
 	}

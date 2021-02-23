@@ -2,6 +2,9 @@ const express=require('express')
 const Notice = require('../model/Notice')
 const Post=require('../model/Post')
 
+const cloudinary = require('cloudinary');
+
+const deleteFileHandler=require('../util/imageDeleteHandler')
 // Type : GET
 // Access : Private (Only For Admin)
 // @Desc : Page to Upload Post For Notice-Board
@@ -15,28 +18,39 @@ exports.getUploadPost=(req,res)=>{
 // Access : Private (Only For Admin)
 // @Desc : Upload Post OnTo The Server
 exports.postUploadPost=(req,res)=>{
-	
-	const image=req.file;
-	console.log(image.path)
+	// console.log(req.file)
+	let image=req.file.path;
+	//  image=".concat(image)
+	 console.log(image +" is path")
 	const heading=req.body.heading;
 	const description=req.body.description;
 	const criterion=req.body.criterion;
-	const post=new Post({
-		user:req.user,
-		image:image.path,
-		heading:heading,
-		description:description,
-		criterion:criterion
-	})
-	post.save()
-		.then(result=>{
-			console.log("Post is successfully added:)");
-			res.redirect('/');
-		})
-		.catch(err=>{
-			console.log(err);
-		})
-
+		
+	// console.log(cloudinary.uploader)
+		cloudinary.uploader.upload(image,(result)=>{
+					// console.log(error +" : error")
+					console.log(result +": result")
+					   deleteFileHandler.deleteFileHandler(image)
+					   const post=new Post({
+						 	user:req.user,
+						 	image:result.secure_url,
+						 	heading:heading,
+						 	description:description,
+						 	criterion:criterion,
+						 	cloudinary_public_id:result.public_id
+				  		  });
+						post.save()
+						  .then(result=>{
+							  console.log("Post is successfully added:)");
+							 
+							  res.redirect('/');
+						  })
+						  .catch(err=>{
+							  console.log(err);
+						  })
+				
+			})
+	
 }
 
 // Type : GET

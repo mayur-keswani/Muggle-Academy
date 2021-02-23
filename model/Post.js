@@ -22,6 +22,10 @@ const postSchema=new Schema({
 		type:String,
 		
 	},
+	cloudinary_public_id:{
+		type:String
+	},
+
 	date:{
 		type:Date,
 		default:Date.now

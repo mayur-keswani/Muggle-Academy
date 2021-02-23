@@ -14,15 +14,39 @@ After running above commands , your website will be live: Open http://localhost:
   - multer
   - connect-flash
   - session
+  - cloudinary
   - helmet
   - compression
   - _ejs_
   - bodyparser
   - sharethis
   
+  
+## Features
+ 1) Carousel to Show All Posts 
 
+ 2) Not only Posts , Autherities can issue Notice which would be presented in separate traditional notice format.
 
- 
+ 3) Implemented clean and easy Authentication Flow 
+
+ 4) Allowing to issue notice & post photos ,only to Admin authorities (Autherization flow)
+
+ 5) Notice can be downloaded for offline read
+
+ 6) Student can share Notice with other social media platform.
+
+ 7) Student can Set/Update their profile details i.e, college,semester,course, profile_pic information etc.
+
+ 8) session based login-logout option
+
+ 9) User can archieved notice for later read  
+
+10) Secured headers for protection of app
+
+11) Compressed the size of assets while loading it up on client browser
+
+12) Uploading/Fetching image on cloudinary platform
+
 
 
 ### How you can contribute to this repository 🤝:
