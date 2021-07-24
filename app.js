@@ -12,7 +12,6 @@ const compression = require('compression');
 const cloudinary = require('cloudinary');
 
 
-
 require('dotenv').config('./.env')
 let db=`mongodb+srv://${process.env.Mongo_USER}:${process.env.Mongo_PASSWORD}@cluster0.gpz6t.mongodb.net/NoticeBoard?retryWrites=true&w=majority`
 // Cloud_NAME= process.env.Cloud_NAME
@@ -30,7 +29,7 @@ const authRoute= require('./routes/auth');
 
 
 const port=process.env.PORT || 3000;
-const hostname='127.0.0.1';
+// const hostname='127.0.0.1';
 
 
 const store=new MongoDbStore({
@@ -63,7 +62,6 @@ app.use(multer({ storage: storage }).single('myupload'));		// handling multipart
 app.use('/public/assets/upload',express.static('./public/assets/upload'))
 
 app.use((req,res,next)=>{
-	
 	if(!req.session.user){
 		return next();
 	}

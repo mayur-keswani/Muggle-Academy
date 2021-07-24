@@ -10,7 +10,8 @@ const deleteFileHandler=require('../util/imageDeleteHandler')
 // @Desc : Page to Upload Post For Notice-Board
 exports.getUploadPost=(req,res)=>{
 	res.render('admin/post-upload',{
-		isAutherized:req.user.role==='admin'
+		isAutherized:req.user.role==='admin',
+		username:(req.user)? req.user.username :null
 	})
 }
 
@@ -18,7 +19,8 @@ exports.getUploadPost=(req,res)=>{
 // Access : Private (Only For Admin)
 // @Desc : Upload Post OnTo The Server
 exports.postUploadPost=(req,res)=>{
-	// console.log(req.file)
+	console.log("message"+"post going")
+	console.log(req.file)
 	let image=req.file.path;
 	//  image=".concat(image)
 	 console.log(image +" is path")
@@ -26,7 +28,7 @@ exports.postUploadPost=(req,res)=>{
 	const description=req.body.description;
 	const criterion=req.body.criterion;
 		
-	// console.log(cloudinary.uploader)
+	
 		cloudinary.uploader.upload(image,(result)=>{
 					// console.log(error +" : error")
 					console.log(result +": result")
@@ -58,7 +60,8 @@ exports.postUploadPost=(req,res)=>{
 // @Desc : Get Page to Fill Details/Issue Notice
 exports.getIssueNotice=(req,res)=>{
 	res.render('admin/issue-notice',{
-		isAutherized:req.user.role==='admin'
+		isAutherized:req.user.role==='admin',
+		username:(req.user)? req.user.username :null
 	})
 }
 

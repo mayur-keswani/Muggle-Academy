@@ -53,16 +53,16 @@ exports.postLogin=(req,res)=>{
 
 }
 
-exports.getSignin=(req,res)=>{
+exports.getSignup=(req,res)=>{
 	let message=req.flash('error');
 	if(message.length>0){
 		message=message[0];
 	}else{
 		message=null
 	}
-	res.render('auth/signin.ejs',{message:message})
+	res.render('auth/signup.ejs',{message:message})
 }
-exports.postSignin=(req,res)=>{
+exports.postSignup=(req,res)=>{
 	
 	const username=req.body.username;
 	const email=req.body.email;

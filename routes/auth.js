@@ -6,8 +6,8 @@ const authController=require('../controller/auth')
 router.get('/login',authController.getLogin);
 router.post('/login',authController.postLogin)
 
-router.get('/signin',authController.getSignin)
-router.post('/signin',authController.postSignin)
+router.get('/signup',authController.getSignup)
+router.post('/signup',authController.postSignup)
 
 router.get('/logout',(req,res)=>{
 	req.session.destroy(err=>{

@@ -1,0 +1,73 @@
+<%- include('../includes/header.ejs')%>
+<link rel="stylesheet" href="/assets/customCSS/signin.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+</head>
+<body>
+    <div class="signup">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-sm-12 signup-form p-2">
+                    
+                    <form class="m-4" action="/signup" method="post">
+                        <header class="mb-4"><h2>Signup</h2></header>
+                        <% if(message){ %>
+                            <div class="bg-danger text-white text-center"><i class="zmdi zmdi-alert-octagon"></i><%=message%></div>
+                        <%}%>
+                        <div class="form-group row">
+                            <label class="col-2 col-form-label">
+                                  <i class="zmdi zmdi-account zmdi-hc-lg"></i></label>
+                            <input type="text" name="username" class="form-control col-lg-10 col-10" placeholder="Your Username">
+                            
+                          </div>
+
+                        <div class="form-group row">
+                          <label class="col-2 col-form-label">
+                                <i class="zmdi zmdi-email zmdi-hc-lg"></i></label>
+                          <input type="email" name="email" class="form-control col-lg-10 col-10" placeholder="Your Email">
+                          
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label class="col-2 col-form-label">
+                                <i class="zmdi zmdi-phone zmdi-hc-lg"></i>
+                            </label>
+                            <input type="number" name="mobile_number" class="form-control col-10" placeholder="Your Phone no.">
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label class="col-2 col-form-label">
+                                <i class="zmdi zmdi-lock zmdi-hc-lg"></i>
+                            </label>
+                            <input type="password" name="password" class="form-control col-10" placeholder="Your Password">
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-2 col-form-label">
+                                <i class="zmdi zmdi-lock-outline zmdi-hc-lg"></i>
+                            </label>
+                            <input type="password " name="confirm_password" class="form-control col-10" placeholder="Confirm Password">
+                        </div>
+                        <select class="custom-select custom-select-md mb-3" name="role">
+                            <option value="admin">Admin</option>
+                            <option value="student">Student</option>
+                        </select>
+    
+                       
+                        <input type="submit" class="btn btn-primary btn-lg mt-3" value="Register"> </input>
+                        <div class="text-muted mt-2">Already a User?   
+                            <a href="/login" >LOGIN</a>
+                        </div>
+                      </form>
+                </div>
+                <div class="col-lg-6 col-sm-12 signup-illustration">
+                    <img src="/assets/signup.svg" width="80%"/>
+                </div>
+            </div>
+           
+                
+          
+        </div>
+    </div>
+    <%- include('../includes/footer.ejs')%>
+</body>

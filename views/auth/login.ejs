@@ -1,59 +1,61 @@
 <%- include('../includes/header.ejs')%>
 
 	<link rel="stylesheet" href="/assets/customCSS/login.css">
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
 </head>
 <body>
-<header class="jumbotron bg-primary" style="color:azure; font-family: Verdana, Geneva, Tahoma, sans-serif;" >
-   <h2>LOGIN</h2>
-</header>
+	<div class="login-section">
+        <div class="container ">
+            <div class="row pt-5">
+				<div class="col-lg-6 col-sm-12 login-illustration">
+                    <img src="/assets/login.svg" width="80%"/>
+                </div>
+                <div class="col-lg-6 col-sm-12 login-form p-2">
+                    <header class="mb-4"><h2>Signin</h2></header>
+                    <% if(message){ %>
+                        <div class="text-danger text-center h6"><i class="zmdi zmdi-alert-octagon"> </i><%=message%></div>
+                    <%}%>
+                    <form class="m-4" action="/login" method="post" >
+                    
+                        <div class="form-group row p-0 mx-0">
+                          <label class="col-2 col-form-label">
+                                <i class="zmdi zmdi-email zmdi-hc-lg"></i></label>
+                          <input type="email" name="email" class="form-control col-lg-10 col-10" placeholder="Your Email">     
+                        </div>
+                    
+                        <div class="form-group row p-0 mx-0">
+                            <label class="col-2 col-form-label">
+                                <i class="zmdi zmdi-lock zmdi-hc-lg"></i>
+                            </label>
+                            <input type="password" name="password" class="form-control col-10" placeholder="Your Password">
+                        </div>
 
-
-<% if(message){ %>
-	<p class="text-danger text-center"><%=message%></p>
-<% } %>
-
-
-<div class="container-fluid bg-light pt-5">
-	<div class="row" >
-		<div class="col-lg-12 loginBox">
-			   <!-- <h2>LOGIN</h2> -->
-				<form action="/login" method="post">
-				<div class="form-group">
-						<div class="input-group">
-						   <input type="text" name="username" placeholder="USERNAME" class="form-control">
+                       
+                        <input type="submit" class="btn btn-primary btn-lg m-3" value="Login"> </input>
+						<hr>
+						<div class="text-center">
+									Or
+							<h5>Login with </h5>
+                            <div class="d-flex justify-content-center align-item-center">   
+                                <button class="btn btn-danger btn-lg px-5 mx-2 d-inline">
+                                    <i class="zmdi zmdi-google"></i>
+                                </button>
+							    <button class="btn btn-primary btn-lg px-5 mx-2 d-inline">
+                                    <i class="zmdi zmdi-twitter"></i>
+                                </button>
+                            </div>
+							
 						</div>
-				</div>
-				<div class="form-group">
-					<div class="input-group">
-					   <div class="input-group-prepend">
-						   <div class="input-group-text">@gmail.com</div>
-					   </div>
-					   <input type="text" name="email" placeholder="EMAIL" class="form-control">
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="input-group">
-					   <input type="text" name="password" placeholder="password" class="form-control">
-					</div><small class="text-muted">Forget password<a href="/">CLICK HERE</a></small>
-				</div>
-				<input type="submit" value="SUBMIT" class="btn btn-block btn-outline-primary"><br>
-				</form>
-				
-		</div>
+						
 
-		<div class="col-lg-5 offset-7 signBox">
-			<p class="d-inline">Don't have an account</p>
-			<a href="/signin" class="btn btn-primary">SIGN IN</a>
-		</div>
-	</div>  <!--end of row-->
+                        <div class="text-muted mt-2">Don't have account?<a href="/signin" >SIGN UP</a></div>
 
-</div>      <!--end of container-->
-
-
-
-<%- include('../includes/footer.ejs')%>
+                      </form>
+                </div>
+                
+            </div>
+                  
+        </div>
+    </div>
+	<%- include('../includes/footer.ejs')%>
 </body>
-
-  
-  

@@ -38,6 +38,7 @@ exports.getNotices=(req,res)=>{
 				res.render('users/notices',{
 					isAutherized:(req.user  && req.user.role==='admin')?true : false,
 					notices:notices,
+					username:(req.user)? req.user.username :null
 				})
 			}	
 		})
@@ -59,6 +60,7 @@ exports.getNoticeDetail=(req,res)=>{
 				notice:notice,
 				isAutherized:(req.user  && req.user.role==='admin')?true : false,
 				username:username,
+				username:(req.user)? req.user.username :null
 			})
 		})
 		.catch(err=>{
@@ -74,7 +76,8 @@ exports.getPhotos=(req,res)=>{
 		.then(posts=>{
 			res.render('users/photos',{
 				isAutherized:(req.user  && req.user.role==='admin')?true : false,
-				posts:posts
+				posts:posts,
+				username:(req.user)? req.user.username :null
 			})
 		})
 	
@@ -94,7 +97,8 @@ exports.getUserProfile=(req,res)=>{
 				console.log(profile);
 				res.render('users/profile',{
 					profile:profile,
-					isAutherized:(req.user  && req.user.role==='admin')?true : false
+					isAutherized:(req.user  && req.user.role==='admin')?true : false,
+					username:(req.user)? req.user.username :null
 				})
 			}						
 		})
@@ -174,8 +178,9 @@ exports.getArchieve=(req,res)=>{
 				console.log(user.archieved.items)
 				let notices=user.archieved.items
 				res.render('users/archieve',{
-				notices:notices,
-				isAutherized:(req.user)? true : false
+					notices:notices,
+					isAutherized:(req.user)? true : false,
+					username:(req.user)? req.user.username :null
 			})
 			}
 			
