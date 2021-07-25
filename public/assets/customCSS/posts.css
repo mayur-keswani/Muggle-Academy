@@ -1,5 +1,58 @@
-body{
-	margin: 0;
-	padding: 0;
-	background-color: aqua;
+.container-fluid{
+	width: 100%;
+	margin: 20px auto;
+	columns:5;
+	column-gap: 15px;
+ }
+ .card{
+	overflow: hidden;
+	padding: 0 !important;
+	margin-bottom: 5px;
+	box-sizing: border-box;
+	break-inside: avoid;
+	height: auto;
+	position: relative;
+	background-color: #020101 !important;
+ }
+ /* .post {
+	margin: 5px;
+	width: 100%;
+	border: 1px solid black;
+	position: relative;
+ } */
+ .post :hover{
+	 opacity: 0.3;
+ }
+ .image-description{
+	 display: none;
+	 box-sizing: border-box;
+ }
+ .post:hover .image-description{
+	 width: 100%;
+	 position: absolute;
+	 top: 50%;
+	 left: 0%;
+	 transform: translateY(-50%);
+	 display: block !important;
+	 background-color: rgb(241, 241, 241);
+ }
+ @media(max-width:1200px){
+	.container-fluid{
+		width: calc(100%-40px);
+		margin: 10px auto;
+		/* border: 3px solid red; */
+		columns: 3;
+		column-gap: 20px;
+		box-sizing: border-box;
+	}
+}
+@media(max-width:768px){
+	.container-fluid{	
+		columns: 2;
+	}
+}
+@media(max-width:480px){
+	.container-fluid{	
+		columns: 1;	
+	}
 }

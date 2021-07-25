@@ -28,28 +28,34 @@
 			<a class="nav-link" href="/issue-notice">Issue Notice</a>
 		</li>
 		<% } %>
+		<li class="nav-item dropdown">
+			<a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			  More
+			</a>
+		
+			<div class="dropdown-menu bg-light text-dark " aria-labelledby="dropdownMenuButton">
+			  <a class="dropdown-item  p-3" href="/profile">profile</a>
+			  <a class="dropdown-item p-3" href="/archieve">archieve notice</a>
+			  <!-- <a class="dropdown-item p-3" href="/logout ">logout</a> -->
+			</div>
+	
+		</li>
 		
 	  </ul>
 	  
-		<span class="navbar-text d-inline mr-4 ">
-		  <% if(isAutherized){ %>	
-			<div class="dropdown d-inline">
-				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
-				</button>
-				<div class="dropdown-menu bg-dark text-dark" aria-labelledby="dropdownMenuButton">
-				  <a class="dropdown-item" href="/profile">profile</a>
-				  <a class="dropdown-item" href="/archieve">archieve notice</a>
-				  <a class="dropdown-item" href="/logout">logout</a>
-				</div>
-			</div>
-			<% }else{%>
-				<a href="/signin" class="btn btn-info btn-lg">Sign in</a>
-			<% } %>
+		<span class="navbar-text d-inline mr-5 ">
 			<% if(username){ %>
 				<div class="d-inline ml-1">Hello <%= username%>!</div>
 			<% } else { %>
 				<div class="d-inline ml-1"></div>
+		    <% } %>
+		  <% if(isAutherized){ %>	
+			
+			<a href="/logout" class="btn btn-danger btn-lg">Logout</a>
+			<% }else{%>
+				<a href="/signin" class="btn btn-info btn-lg">Sign in</a>
 			<% } %>
+			
 		  </span>
 
 

@@ -21,3 +21,7 @@
 	color: #312f2f !important;
 	
 }
+.dropdown-item:hover {
+	background-color: #47c2b5;
+	color:azure;
+}

@@ -3,7 +3,13 @@
 	<link rel="stylesheet" href="/assets/customCSS/index.css">
 
 	<%- include('../includes/navigation.ejs')%>
-	<header class="text-center my-3  h3 text-secondary"><span class="ml-5">A Moment to Remember....</span></header>
+
+
+   <!-- RECENT ACTIVITIES -->
+
+
+	<!--  POSTS   -->
+	<header class="text-center my-3  h3 text-secondary"><span class="ml-3">A Moment to Remember....</span></header>
 	<div class="container bg-info d-flex justify-content-center">
 		<div class="slick-slider row">
 		<% posts.forEach((post,index)=>{ %>
@@ -17,17 +23,17 @@
 		 <% }) %>	
 		</div>
 	</div>
-	
 	<div class="container mt-3">
 	<div class="image-list row">		
 		<% posts.forEach((post,index)=>{ %>
 			<div class="slick-list-item mx-2">
 				<img src="<%=post.image%>" alt="slide" class="post-image">
 			</div>
-		 <% }) %>	
-		
+		 <% }) %>		
 	</div>
 	</div>
+
+	
 		
 	
 	<%- include('../includes/footer.ejs')%> 
