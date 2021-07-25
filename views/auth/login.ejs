@@ -15,7 +15,7 @@
                     <% if(message){ %>
                         <div class="text-danger text-center h6"><i class="zmdi zmdi-alert-octagon"> </i><%=message%></div>
                     <%}%>
-                    <form class="m-4" action="/login" method="post" >
+                    <form class="m-4" action="/signin" method="POST" >
                     
                         <div class="form-group row p-0 mx-0">
                           <label class="col-2 col-form-label">
@@ -31,7 +31,7 @@
                         </div>
 
                        
-                        <input type="submit" class="btn btn-primary btn-lg m-3" value="Login"> </input>
+                        <input type="submit" class="btn btn-primary btn-lg m-3" value="Submit"> </input>
 						<hr>
 						<div class="text-center">
 									Or
@@ -48,7 +48,7 @@
 						</div>
 						
 
-                        <div class="text-muted mt-2">Don't have account?<a href="/signin" >SIGN UP</a></div>
+                        <div class="text-muted mt-2">Don't have account?<a href="/signup" >SIGN UP</a></div>
 
                       </form>
                 </div>

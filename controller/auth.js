@@ -23,8 +23,9 @@ exports.postLogin=(req,res)=>{
 	User.findOne({email:email,username:username})
 		.then(user=>{
 			if(!user){
+
 				req.flash('error','User not existed')
-				res.redirect('/login');
+				res.redirect('/signin');
 			}
 			else{
 				bcrypt.compare(password,user.password)
@@ -39,7 +40,7 @@ exports.postLogin=(req,res)=>{
 							
 						}else{
 							req.flash('error','Password is incorrect')
-							res.redirect('/login')
+							res.redirect('/signin')
 						}
 					})
 					.catch(error=>{
