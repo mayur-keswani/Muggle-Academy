@@ -35,11 +35,21 @@ exports.getNotices=(req,res)=>{
 		.populate('userId')
 		.exec((err,notices)=>{
 			if(!err){
-				res.render('users/notices',{
-					isAutherized:(req.user  && req.user.role==='admin')?true : false,
-					notices:notices,
-					username:(req.user)? req.user.username :null
-				})
+
+  			let result = {} 
+			result =notices.reduce(function (r, a) {  
+        		r[a.date.toDateString()] = r[a.date] || [];
+        		r[a.date.toDateString()].push(a);
+        		return r;
+    		}, Object.create(null));
+
+			console.log(result);
+
+			res.render('users/notices',{
+				isAutherized:(req.user  && req.user.role==='admin')?true : false,
+				notices:result,
+				username:(req.user)? req.user.username :null
+			 })
 			}	
 		})
 		

@@ -20,7 +20,7 @@ exports.postLogin=(req,res)=>{
 	const password=req.body.password;
 	const username=req.body.username
 
-	User.findOne({email:email,username:username})
+	User.findOne({email:email})
 		.then(user=>{
 			if(!user){
 

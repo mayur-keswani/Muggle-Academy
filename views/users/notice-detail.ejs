@@ -5,7 +5,7 @@
 	 }
 	 .notice-container{
 		 width: 100%;
-		 border: 1px solid black;
+		 border: 1px dashed black;
 	 }
 	 .notice-paper{
 		 background-image: url("https://images.unsplash.com/photo-1586074299757-dc655f18518c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80");
@@ -18,8 +18,7 @@
 
 	 }
  </style>
-</head>
-<body>
+
 	<%- include('../includes/navigation.ejs') %>
 	
 	<div class="notice-container row mx-0">
@@ -45,14 +44,16 @@
 
 			<div class="row">
 				<div class="col-lg-12 my-2 mx-5"><b><%= username %></b></div>
-				<div class=" col-lg-12 my-2 mx-4"><u><%= notice.designation %></u></div>
+				<div class=" col-lg-12 my-2 mx-5"><u><%= notice.designation %></u></div>
 			</div>
 			
 			
 		
 		</div>	
 	</div>
-	<div class="d-flex justify-content-center align-items-center"><a href="/download-notice/<%=notice._id%>" class=" my-3 mx-5 btn btn-outline-secondary">Download</a></div>
+	<div class="d-flex justify-content-center align-items-center">
+		<a href="/download-notice/<%=notice._id%>" class=" my-3 mx-5 px-5 py-3 btn btn-lg btn-secondary">Download</a>
+	</div>
 
 
 	<div class="sharethis-inline-share-buttons text-center fixed-bottom"></div>
