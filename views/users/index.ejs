@@ -1,13 +1,115 @@
 <%- include('../includes/header.ejs')%>
 
 	<link rel="stylesheet" href="/assets/customCSS/index.css">
+	<style>
+		.courses{
+			overflow: auto;
+ 			white-space: nowrap;
+			border-bottom: 2px solid black;
+			
+		}
+		.course-card{
+			border-radius: 5%;
+			display: inline-block !important;
 
+		}
+		.course-card:hover{
+			background-color: rgb(1, 240, 228);
+		}
+		.course-thumbnail{
+			border-radius: 5%;
+		}
+	</style>
 	<%- include('../includes/navigation.ejs')%>
 
 
-   <!-- RECENT ACTIVITIES -->
+   
+	<div class="container-fluid" >
+		<div class="row">
+			<div class="col-lg-10 col-12 " style="height: 350px !important;">
+				<!--courses-->
+				<header class="text-center my-3  h3 text-secondary"><span class="ml-3">Our Remote-Courses</span></header>
+				<div class="courses px-0 pb-auto" style="height: 240px">
+					<div class="card course-card pb-1 px-0 pt-0" 
+						style="width: 300px; height: 200px;">
+						<img class="course-thumbnail card-img" src="/assets/course-thumbnail/MERN.jpg" height="97%" 			 width="100%" alt="MERN">
+					</div>
+					<div class="card course-card   pb-1 px-0 pt-0  mx-2" 
+						style="width: 300px; height: 200px;">
+						<img class="course-thumbnail card-img" src="/assets/course-thumbnail/Reactjs.jpg"
+							height="97%" width="100%" alt="Reactjs">
+					</div>
+					<div class="card course-card   pb-1 px-0 pt-0  mx-2"
+						style="width: 300px; height: 200px;">
+						<img class="course-thumbnail card-img" src="/assets/course-thumbnail/UI-UX.png" height="97%" alt="ui-ux"  width="100%">
+					</div>
+					<div class="card course-card pb-1 px-0 pt-0 mx-2" 
+						style="width: 300px; height: 200px;">
+						<img class="course-thumbnail card-img" src="/assets/course-thumbnail/Photography.jpg" height="97%"  alt="ui-ux"  width="100%">
+					</div>
+					<div class="card course-card pb-1 px-0 pt-0 mx-2" 
+						style="width: 300px; height: 200px;">
+						<img class="course-thumbnail card-img" src="/assets/course-thumbnail/Photography.jpg" height="97%"  alt="ui-ux"  width="100%">
+					</div>
+				</div>		
+			</div>
 
-
+			<div class="col-lg-2 col-12 notices" style="height: 350px;overflow-y: scroll;">
+				<!--Notices-->
+				<header class="text-center my-1  h5 text-secondary"><span class="ml-3">Notices</span></header>
+				<ul class="list-group list-group-flush">
+				<% notices.forEach(notice=>{ %>
+					
+						<a href="/notices/<%=notice._id%>" class="list-group-item  my-1">
+							<li class="h5 d-inline"><%= notice.subject %></li>
+							<span class="text-muted">[<%=notice.date.toLocaleDateString()%>]</span>
+						</a>
+						<a href="" class="list-group-item  my-1">
+							<li class="h5 d-inline"><%= notice.subject %></li>
+							<span class="text-muted">[<%=notice.date.toLocaleDateString()%>]</span>
+						</a>
+						<a href="" class="list-group-item  my-1">
+							<li class="h5 d-inline"><%= notice.subject %></li>
+							<span class="text-muted">[<%=notice.date.toLocaleDateString()%>]</span>	
+						</a>
+						<a href="" class="list-group-item  my-1">
+							<li class="h5 d-inline"><%= notice.subject %></li>
+							<span class="text-muted">[<%=notice.date.toLocaleDateString()%>]</span>
+						
+						</a>
+						<a href="" class="list-group-item  my-1">
+							<li class="h5 d-inline"><%= notice.subject %></li>
+							<span class="text-muted">[<%=notice.date.toLocaleDateString()%>]</span>
+						</a>
+						<a href="" class="list-group-item  my-1">
+							<li class="h5 d-inline"><%= notice.subject %></li>
+							<span class="text-muted">[<%=notice.date.toLocaleDateString()%>]</span>
+						</a>
+						<a href="" class="list-group-item  my-1">
+							<li class="h5 d-inline"><%= notice.subject %></li>
+							<span class="text-muted">[<%=notice.date.toLocaleDateString()%>]</span>
+						</a>
+						<a href="" class="list-group-item  my-1">
+							<li class="h5 d-inline"><%= notice.subject %></li>
+							<span class="text-muted">[<%=notice.date.toLocaleDateString()%>]</span>
+						</a>
+						<a href="" class="list-group-item  my-1">
+							<li class="h5 d-inline"><%= notice.subject %></li>
+							<span class="text-muted">[<%=notice.date.toLocaleDateString()%>]</span>
+						</a>
+						<a href="" class="list-group-item  my-1">
+							<li class="h5 d-inline"><%= notice.subject %></li>
+							<span class="text-muted">[<%=notice.date.toLocaleDateString()%>]</span>
+						</a>
+					
+				<% }) %>
+				</ul>
+			</div>
+		</div>
+	</div>
+    
+	
+	
 	<!--  POSTS   -->
 	<header class="text-center my-3  h3 text-secondary"><span class="ml-3">A Moment to Remember....</span></header>
 	<div class="container bg-info d-flex justify-content-center">

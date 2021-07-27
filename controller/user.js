@@ -7,15 +7,28 @@ const pdfDocument =require('pdfkit')
 const fs=require('fs')
 const path=require('path')
 
+const cloudinary = require('cloudinary');
+
+const deleteFileHandler=require('../util/imageDeleteHandler')
+
 // Type : GET
 // Access : Public 
 // @Desc :Get Index (Carousel Of Posts)
 exports.getIndex=(req,res)=>{
-	console.log(req.user)
+	
+	let posts;
+	let notices;
 	Post.find()
-		.then(posts=>{
+		.then(result=>{
+			posts=result;
+			return Notice.find()
+				
+		})
+		.then(result=>{
+			notices=result
 			res.render('users/index',{
 				posts:posts,
+				notices:notices,
 				isAutherized:(req.user  && req.user.role==='admin')?true : false,
 				username:(req.user)? req.user.username :null
 			})
@@ -60,16 +73,16 @@ exports.getNotices=(req,res)=>{
 // Access : Public
 // @Desc : Get Particular Notice-in-Detail
 exports.getNoticeDetail=(req,res)=>{
-	let username=req.body.username
-	let notice_id=req.params.notice_id;
 	
+	let notice_id=req.params.id;
+	console.log(notice_id)
 	Notice.findById(notice_id)
 		.then(notice=>{
-
+			console.log(notice)
 			res.render('users/notice-detail',{
 				notice:notice,
 				isAutherized:(req.user  && req.user.role==='admin')?true : false,
-				username:username,
+				
 				username:(req.user)? req.user.username :null
 			})
 		})
@@ -104,7 +117,6 @@ exports.getUserProfile=(req,res)=>{
 		.then(profile=>{
 			if(profile)	// profile already existed
 			{   
-				console.log(profile);
 				res.render('users/profile',{
 					profile:profile,
 					isAutherized:(req.user  && req.user.role==='admin')?true : false,
@@ -118,18 +130,38 @@ exports.getUserProfile=(req,res)=>{
 // Type : POST
 // Access : Public
 // @Desc : Update/Set Profile on server (Logged-in required)
-exports.postUserProfile=(req,res)=>{
-	console.log(req.file)
-	const profile_pic = (req.file)?rq.file:null
+const cloudinaryUploader=async(image_path)=>{
+	let image_url;
+	image_url=await cloudinary.uploader.upload(image_path,(error,result)=>{
+				if(!error){
+					
+					url=result.url
+					return url
+				}	
+				else{			
+					console.log(error)
+				}
+		
+	})
+	return (image_url)?image_url:null
+}
+exports.postUserProfile=async(req,res)=>{
+	let profile_pic = (req.file)?req.file:null
 	const college = req.body.college 
 	const course = req.body.course
 	const semester = req.body.semester
 	const contact_no = req.body.contact_no 
 	const address = req.body.address
-
+	let image_url;
+	if(profile_pic){
+		image_url=await cloudinaryUploader(profile_pic.path)
+		deleteFileHandler.deleteFileHandler(profile_pic.path);
+	}
 	Profile.findOne({userId:req.user})
 		.then(profile=>{
-			profile.profile_pic=(profile_pic)?profile_pic.path:null;
+			if(image_url){
+				profile.profile_pic=image_url.url;
+			}
 			profile.college = college
 			profile.course = course
 			profile.semester = semester;

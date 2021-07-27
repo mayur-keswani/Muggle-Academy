@@ -9,7 +9,7 @@ router.get('/',userController.getIndex)
 
 router.get('/notices',userController.getNotices)
 
-router.post('/notices/:notice_id',userController.getNoticeDetail)
+router.get('/notices/:id',userController.getNoticeDetail)
 router.get('/download-notice/:id',userController.getNoticeDownload)
 
 router.get('/photos',userController.getPhotos)
