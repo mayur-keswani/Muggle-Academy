@@ -1,0 +1,49 @@
+<%- include('../includes/header.ejs')%>
+	<%- include('../includes/navigation.ejs') %>
+
+	<div class="container">
+		<div class="h2 text-secondary">Create Course-Structure</div>
+		<hr/>
+		<div>
+			<form action="/launch-course" method="post" enctype="multipart/form-data">
+				<div class="form-group">
+			  	<label class="h5">Title</label>
+			  	<input type="text" name="title" class="form-control form-control-lg" 
+				  	aria-describedby="titleHelp" placeholder="eg: Javascript (ES6)">
+			  	<small id="titleHelp" class="form-text text-muted">title should be small and informative!</small>
+				</div>
+				<div class="form-group">
+			  		<label class="h5">Price</label>
+			  		<input type="number" name="price" class="form-control"  placeholder="Enter price RS">
+				</div>
+				<div class="form-group">
+					<label class="h5">Description</label>
+					<textarea class="form-control" name="description" 
+						placeholder="Brief intro about course" rows="4"></textarea>
+				</div>
+				<div class="form-group">
+					<label class="h5">Upload Thumbnail </label><span class="text-muted">(max: 5MB)</span>
+					<input type="file" name="myupload" class="form-control-file">
+				</div>
+				<div class="form-group">
+					<label class="h5">Tags</label>
+					<input type="text" name="tags" class="form-control"  placeholder="eg : Javascript,Reactjs,Web,WebApp">
+			  </div>
+				<div class="form-check">
+			  		<input type="checkbox" class="form-check-input" id="exampleCheck1">
+					<label class="form-check-label" for="exampleCheck1">Confirm</label>
+				</div>
+
+
+				<div class="text-right">
+				<button type="submit" class="btn btn-danger btn-lg px-5 py-2 ">Submit</button>
+				<p class="text-muted">Once created, wont be deleted</p>
+				</div>
+		  	</form>
+		</div>
+	</div>
+
+	<%- include('../includes/footer.ejs') %>
+</body>
+
+</html>

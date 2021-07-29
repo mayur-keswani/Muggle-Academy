@@ -30,33 +30,31 @@
 				<!--courses-->
 				<header class="text-center my-3  h3 text-secondary"><span class="ml-3">Our Remote-Courses</span></header>
 				<div class="courses px-0 pb-auto" style="height: 240px">
-					<div class="card course-card pb-1 px-0 pt-0" 
-						style="width: 300px; height: 200px;">
-						<img class="course-thumbnail card-img" src="/assets/course-thumbnail/MERN.jpg" height="97%" 			 width="100%" alt="MERN">
-					</div>
-					<div class="card course-card   pb-1 px-0 pt-0  mx-2" 
-						style="width: 300px; height: 200px;">
-						<img class="course-thumbnail card-img" src="/assets/course-thumbnail/Reactjs.jpg"
-							height="97%" width="100%" alt="Reactjs">
-					</div>
-					<div class="card course-card   pb-1 px-0 pt-0  mx-2"
-						style="width: 300px; height: 200px;">
-						<img class="course-thumbnail card-img" src="/assets/course-thumbnail/UI-UX.png" height="97%" alt="ui-ux"  width="100%">
-					</div>
-					<div class="card course-card pb-1 px-0 pt-0 mx-2" 
-						style="width: 300px; height: 200px;">
-						<img class="course-thumbnail card-img" src="/assets/course-thumbnail/Photography.jpg" height="97%"  alt="ui-ux"  width="100%">
-					</div>
-					<div class="card course-card pb-1 px-0 pt-0 mx-2" 
-						style="width: 300px; height: 200px;">
-						<img class="course-thumbnail card-img" src="/assets/course-thumbnail/Photography.jpg" height="97%"  alt="ui-ux"  width="100%">
-					</div>
+					<%if(courses.length===0){%>
+						<div class="h3 text-secondary p-2">No Courses Yet! </div>
+					<%}%>
+					<% courses.forEach(course=>{%>
+						<a class="card course-card pb-1 px-0 pt-0"
+							href="/course/<%=course._id%>" 
+							style="width: 300px; height: 200px;">
+							<img class="course-thumbnail card-img" 
+								src="<%=course.thumbnail%>" 
+								height="97%" width="100%" 
+								alt="<%=course.title%>">
+						</a>
+					<%})%>
+						
 				</div>		
 			</div>
 
 			<div class="col-lg-2 col-12 notices" style="height: 350px;overflow-y: scroll;">
 				<!--Notices-->
-				<header class="text-center my-1  h5 text-secondary"><span class="ml-3">Notices</span></header>
+				<header class="text-center my-1  h5 text-secondary">
+					<span class="ml-0">Notices</span>
+					
+					<a class="ml-3" href="/notices">Check All ➡️</a>
+				
+				</header>
 				<ul class="list-group list-group-flush">
 				<% notices.forEach(notice=>{ %>
 					
@@ -125,14 +123,17 @@
 		 <% }) %>	
 		</div>
 	</div>
-	<div class="container mt-3">
-	<div class="image-list row">		
-		<% posts.forEach((post,index)=>{ %>
-			<div class="slick-list-item mx-2">
-				<img src="<%=post.image%>" alt="slide" class="post-image">
-			</div>
-		 <% }) %>		
-	</div>
+	<div class="container  my-3">
+		<div class="image-list row mx-0">		
+			<% posts.forEach((post,index)=>{ %>
+				<div class="slick-list-item ">
+					<img src="<%=post.image%>" alt="slide" class="post-image">
+				</div>
+		 	<% }) %>		
+		</div>
+		<div class="text-center mx-2 ">
+			<a class="h3 px-5 py-3" href="/photos">Check All ➡️</a>
+		</div>
 	</div>
 
 	

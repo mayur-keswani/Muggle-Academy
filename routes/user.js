@@ -21,4 +21,6 @@ router.post('/profile',userController.postUserProfile)
 
 router.get('/archieve/:id',userController.getNoticeSaved)
 router.get('/archieve',userController.getArchieve)
+
+router.get('/course/:id',userController.getCourseDetail)
 module.exports=router

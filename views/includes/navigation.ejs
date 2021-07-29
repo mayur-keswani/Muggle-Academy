@@ -20,14 +20,19 @@
 		<li class="nav-item active">
 		  <a class="nav-link" href="/notices">Notices</a>
 		</li>
-		<% if(isAutherized){ %>
+		<% if(isAdmin){ %>
 		<li class="nav-item active">
 			<a class="nav-link" href="/upload-post">Add Photos</a>
 		</li>
 		<li class="nav-item active">
 			<a class="nav-link" href="/issue-notice">Issue Notice</a>
 		</li>
+	
 		<% } %>
+		<% if(isAutherized){%>
+		<li class="nav-item active">
+			<a class="nav-link" href="/my-courses">My Courses</a>
+		</li>
 		<li class="nav-item dropdown">
 			<a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			  More
@@ -38,8 +43,8 @@
 			  <a class="dropdown-item p-3" href="/archieve">archieve notice</a>
 			  <!-- <a class="dropdown-item p-3" href="/logout ">logout</a> -->
 			</div>
-	
 		</li>
+		<% } %>
 		
 	  </ul>
 	  

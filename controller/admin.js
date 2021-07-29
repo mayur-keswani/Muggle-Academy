@@ -4,13 +4,15 @@ const Post=require('../model/Post')
 
 const cloudinary = require('cloudinary');
 
-const deleteFileHandler=require('../util/imageDeleteHandler')
+const deleteFileHandler=require('../util/imageDeleteHandler');
+const Course = require('../model/Course');
 // Type : GET
 // Access : Private (Only For Admin)
 // @Desc : Page to Upload Post For Notice-Board
 exports.getUploadPost=(req,res)=>{
 	res.render('admin/post-upload',{
-		isAutherized:req.user.role==='admin',
+		isAdmin:(req.user  && req.user.role==='admin')?true : false,
+		isAutherized:(req.user)?true : false,
 		username:(req.user)? req.user.username :null
 	})
 }
@@ -60,7 +62,8 @@ exports.postUploadPost=(req,res)=>{
 // @Desc : Get Page to Fill Details/Issue Notice
 exports.getIssueNotice=(req,res)=>{
 	res.render('admin/issue-notice',{
-		isAutherized:req.user.role==='admin',
+		isAdmin:(req.user  && req.user.role==='admin')?true : false,
+		isAutherized:(req.user)?true : false,
 		username:(req.user)? req.user.username :null
 	})
 }
@@ -86,5 +89,36 @@ exports.postIssueNotice=(req,res)=>{
 		})
 		.catch(err=>{
 			console.log(err)
+		})
+}
+
+
+exports.getLaunchCourse=(req,res)=>{
+	res.render('admin/launch-course',{
+		isAdmin:(req.user  && req.user.role==='admin')?true : false,
+		isAutherized:(req.user)?true : false,
+		username:(req.user)? req.user.username :null
+	})
+}
+exports.postLaunchCourse=(req,res,next)=>{
+	console.log(req.file)
+	const title=req.body.title;
+	const description=req.body.description;
+	const price=req.body.price;
+	const thumbnail=(req.file)?req.file.path:null;
+	const tags= req.body.tags.split(',')
+
+	const course = new Course({
+		userID:req.user,
+		title:title,
+		description:description,
+		price:price,
+		thumbnail:thumbnail,
+		tags:tags
+	})
+	course.save()
+		.then(course=>{
+			console.log("Course Created Successfully")
+			res.redirect('/')
 		})
 }

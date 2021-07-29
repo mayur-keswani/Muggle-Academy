@@ -50,16 +50,19 @@
 /* ---------------------------------------------- */
 .image-list{
 	width: 100%;
-	border: 1px solid rgb(58, 150, 21);
+	
 	height: 20vh;
-	background-color: #ffffff;
+	background: linear-gradient(145deg, #f0f0f0, #f0f0f0);
+	box-shadow:  5px 5px 15px #bebebe,
+	-10px -10px 30px #ffffff;
 	box-sizing: border-box;
-	margin: auto;
+	border-radius: 5px;
+	margin: auto 0px;
 
 }
 .slick-list-item{
-	height: 20vh;
-	/* border: 1px solid black; */
+	height:20vh;
+	border-right: 0.1px dashed black;
 	/* border-color: #363633;
 	border-width: 0px 0px 2px 0px;
 	border-style: dotted; */

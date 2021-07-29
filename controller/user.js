@@ -10,6 +10,7 @@ const path=require('path')
 const cloudinary = require('cloudinary');
 
 const deleteFileHandler=require('../util/imageDeleteHandler')
+const Course = require('../model/Course')
 
 // Type : GET
 // Access : Public 
@@ -18,6 +19,7 @@ exports.getIndex=(req,res)=>{
 	
 	let posts;
 	let notices;
+	let courses;
 	Post.find()
 		.then(result=>{
 			posts=result;
@@ -25,11 +27,17 @@ exports.getIndex=(req,res)=>{
 				
 		})
 		.then(result=>{
-			notices=result
+			notices=result;
+			return Course.find()
+		})
+		.then(result=>{
+			courses=result
 			res.render('users/index',{
 				posts:posts,
 				notices:notices,
-				isAutherized:(req.user  && req.user.role==='admin')?true : false,
+				courses:courses,
+				isAdmin:(req.user  && req.user.role==='admin')?true : false,
+				isAutherized:(req.user)?true : false,
 				username:(req.user)? req.user.username :null
 			})
 		})
@@ -59,7 +67,8 @@ exports.getNotices=(req,res)=>{
 			console.log(result);
 
 			res.render('users/notices',{
-				isAutherized:(req.user  && req.user.role==='admin')?true : false,
+				isAdmin:(req.user  && req.user.role==='admin')?true : false,
+				isAutherized:(req.user)?true : false,
 				notices:result,
 				username:(req.user)? req.user.username :null
 			 })
@@ -81,7 +90,8 @@ exports.getNoticeDetail=(req,res)=>{
 			console.log(notice)
 			res.render('users/notice-detail',{
 				notice:notice,
-				isAutherized:(req.user  && req.user.role==='admin')?true : false,
+				isAdmin:(req.user  && req.user.role==='admin')?true : false,
+				isAutherized:(req.user)?true : false,
 				
 				username:(req.user)? req.user.username :null
 			})
@@ -98,7 +108,8 @@ exports.getPhotos=(req,res)=>{
 	Post.find()
 		.then(posts=>{
 			res.render('users/photos',{
-				isAutherized:(req.user  && req.user.role==='admin')?true : false,
+				isAdmin:(req.user  && req.user.role==='admin')?true : false,
+				isAutherized:(req.user)?true : false,
 				posts:posts,
 				username:(req.user)? req.user.username :null
 			})
@@ -119,7 +130,8 @@ exports.getUserProfile=(req,res)=>{
 			{   
 				res.render('users/profile',{
 					profile:profile,
-					isAutherized:(req.user  && req.user.role==='admin')?true : false,
+					isAdmin:(req.user  && req.user.role==='admin')?true : false,
+					isAutherized:(req.user)?true : false,
 					username:(req.user)? req.user.username :null
 				})
 			}						
@@ -221,7 +233,8 @@ exports.getArchieve=(req,res)=>{
 				let notices=user.archieved.items
 				res.render('users/archieve',{
 					notices:notices,
-					isAutherized:(req.user)? true : false,
+					isAdmin:(req.user  && req.user.role==='admin')?true : false,
+					isAutherized:(req.user)?true : false,
 					username:(req.user)? req.user.username :null
 			})
 			}
@@ -280,7 +293,21 @@ exports.getNoticeDownload=(req,res)=>{
 				}
 				
 		})
-	
-	
-	
+
+}
+
+// Type : GET
+// Access : Public	(Logged-in Not required)
+// @Desc : Get Full-Course Description 
+exports.getCourseDetail=(req,res)=>{
+	Course.findById(req.params.id)
+		.then(course=>{
+			res.render('users/course-detail',{
+				isAdmin:(req.user  && req.user.role==='admin')?true : false,
+						isAutherized:(req.user)?true : false,
+				username:(req.user)? req.user.username :null,
+				course:course
+			})
+		
+		})
 }

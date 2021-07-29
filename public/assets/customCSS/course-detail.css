@@ -1,0 +1,22 @@
+.course-brief,.course-price,.lecture-structure{
+	box-sizing: border-box;	
+}
+.course-brief{
+	width:70% !important;
+	border: 1px solid red;
+}
+.course-price{
+	width:30%;
+	border: 1px solid black;
+	
+}
+.lecture-structure{
+	display: block;
+	width: 70%;
+	border: 1px solid blue;
+}
+@media(max-width:599px){
+	.course-brief,.course-price,.lecture-structure{
+		width: 100% !important;
+	}
+}

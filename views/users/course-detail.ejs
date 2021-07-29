@@ -1,0 +1,122 @@
+<%- include('../includes/header.ejs')%>
+	
+	<style>
+		.container{
+			width: 100%;
+			margin: 20px auto;
+			/* border: 3px solid red; */
+			columns:2;
+			column-gap: 20px;
+		}
+		.box{
+			/* width: 100%; */
+			overflow: hidden;
+			margin-bottom: 5px;
+			box-sizing: border-box;
+			break-inside:avoid;
+			height: auto;
+			position: relative;
+			/* border: 1px solid #020101 !important; */
+
+		}
+		@media(max-width:599px){
+			.container{
+				columns: 1;
+			}
+		}
+
+	</style>
+	<%- include('../includes/navigation.ejs') %>
+
+	<div class="container p-1 mt-0" style="border: 1px dotted black;">
+			<div class="box course-brief mx-0 p-0 " style="height:190px;border: 1px dotted black" >
+				<h6 class="text-muted">COURSE</h6>
+				<div class="h1"><%=course.title%></div>
+				<div class="text-secondary">
+					<%= course.description%>
+				</div>
+			</div>
+			<div class="box course-price mx-0 mt-1" style="height:600px;border: 1px dotted black;">
+				<div class="card" style="width: 100%;">
+					
+					<img class="card-img-top p-4 img-thumbnail img-fluid" 
+					src="<%=course.thumbnail %>" alt="<%=course.title%>"/>
+		
+					<div class="card-body">
+					  <div class="card-text ">
+						  <h5>What included ?</h5>
+						  <div class="text-secondary"><span class="h6">169</span> Lessons <br/>
+						  	<span class="h6">Online</span> Accessibility <br/>
+						 	<span class="h6">1095</span> Days Validity <br/>
+							<span class="h3 text-danger"> (₹) <%=course.price%></span>
+							<span class="text-muted" style="text-decoration: line-through;"> (₹) <%= Math.floor((course.price *100)/23)  %></span>
+							<span class="text-info" >77% OFF</span>
+						  </div>
+						 <div class="card-footer bg-white text-center">
+							 <button class="btn btn-success btn-lg px-5 py-3">Buy Now</button>
+						 </div>
+					  </div>
+					</div>
+				  </div>
+			</div>
+			<div class="box lecture-structure box mx-0 pt-4 px-4" style="height: 800px;border: 1px solid black;">
+				<h4 class="text-secondary">Syllabus</h4>
+				<!-- Accordian Here -->
+				<div class="accordion" id="accordionExample">
+					<div class="card" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+					  <div class="card-header" id="headingOne">
+						<h2 class="mb-0">
+						  <button class="btn text-dark p-3" >
+							<h4>#1 Basics </h4>
+						  </button>
+						</h2>
+					  </div>
+				  
+					  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+						<div class="card-body">
+						  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						</div>
+					  </div>
+					</div>
+					<div class="card" type="button" 
+						data-toggle="collapse" 
+						data-target="#collapseTwo" aria-expanded="false" 		
+						aria-controls="collapseTwo">
+					  <div class="card-header" id="headingTwo">
+						<h2 class="mb-0">
+						  <button class="btn text-dark p-3 collapsed" >
+							<h4>#2 Intermediate</h4> 
+						  </button>
+						</h2>
+					  </div>
+					  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+						<div class="card-body">
+						  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						</div>
+					  </div>
+					</div>
+
+					<div class="card" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					  <div class="card-header" id="headingThree">
+						<h2 class="mb-0">
+						  <button class="btn text-dark p-3 collapsed" >
+							<h4>#3 Advance</h4> 
+						  </button>
+						</h2>
+					  </div>
+					  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+						<div class="card-body">
+						  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						</div>
+					  </div>
+					</div>
+				  </div>
+			</div>	
+				
+			
+	</div>
+
+	<%- include('../includes/footer.ejs') %>
+</body>
+
+</html>
