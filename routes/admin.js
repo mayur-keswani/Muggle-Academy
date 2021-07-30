@@ -12,4 +12,8 @@ router.post('/issue-notice',adminController.postIssueNotice);
 
 router.get('/launch-course',isAuthenticated,adminController.getLaunchCourse);
 router.post('/launch-course',isAuthenticated,adminController.postLaunchCourse);
+
+router.get('/upload-video/:id',isAuthenticated,adminController.getUploadVideo);
+router.post('/upload-video/:id',isAuthenticated,adminController.postUploadVideo);
+
 module.exports=router;

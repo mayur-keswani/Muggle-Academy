@@ -3,6 +3,8 @@ const router=express.Router();
 const Post=require('../model/Post')
 
 const userController= require('../controller/user');
+const isAuthenticated=require('../middleware/isAuthenticated');
+const { route } = require('./admin');
 
 
 router.get('/',userController.getIndex)
@@ -14,13 +16,18 @@ router.get('/download-notice/:id',userController.getNoticeDownload)
 
 router.get('/photos',userController.getPhotos)
 
-router.get('/profile',userController.getUserProfile)
+router.get('/profile',isAuthenticated,userController.getUserProfile)
 
-router.post('/profile',userController.postUserProfile)
+router.post('/profile',isAuthenticated,userController.postUserProfile)
 
 
-router.get('/archieve/:id',userController.getNoticeSaved)
-router.get('/archieve',userController.getArchieve)
+router.get('/archieve/:id',isAuthenticated,userController.getNoticeSaved)
+router.get('/archieve',isAuthenticated,userController.getArchieve)
 
 router.get('/course/:id',userController.getCourseDetail)
+
+router.get('/my-courses',isAuthenticated,userController.getMyCourses)
+router.get('/purchase-course/:id',isAuthenticated,userController.getPurchaseCourse);;
+
+router.get('/course-content/:id',isAuthenticated,userController.getCourseContent)
 module.exports=router

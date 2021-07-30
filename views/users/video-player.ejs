@@ -1,0 +1,17 @@
+<%- include('../includes/header.ejs')%>
+	<%- include('../includes/navigation.ejs') %>
+
+	<div class="video-player mx-0 p-0 " style="height:60vh;border: 1px dotted black" >	
+		<video width="100%" height="100%" controls>
+			<source src="<%=course.content.basic[0].url%>" id="videoPlayer" type="video/mp4">
+		  Your browser does not support the video tag.
+		</video>
+	</div>
+	<div class="box discusion-section mx-0 mt-1" 
+		style="height:140px;border: 1px dotted black">
+	</div>
+
+	<%- include('../includes/footer.ejs') %>
+</body>
+
+</html>

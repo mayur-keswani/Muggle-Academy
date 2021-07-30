@@ -1,0 +1,41 @@
+<%- include('../includes/header.ejs')%>
+	<style>
+		
+	</style>
+	<%- include('../includes/navigation.ejs') %>
+	<div>Uploading Videos For <%=section %> in <%=course.title%>(Course) Here </div>
+	<div class="container px-2">
+		<form action="/upload-video/<%=course._id%>" method="post" enctype="multipart/form-data">
+			<div class="form-group">
+			  <label class="h5">Title</label>
+			  <input type="text" name="title" class="form-control form-control-lg" 
+				  aria-describedby="titleHelp" placeholder="eg: Javascript (ES6)">
+			  <small id="titleHelp" class="form-text text-muted">title should be small and informative!</small>
+			</div>
+			
+			<div class="form-group">
+				<label class="h5">Description</label>
+				<textarea class="form-control" name="description" 
+					placeholder="Brief intro about course" rows="4"></textarea>
+			</div>
+			
+			<div class="form-group">
+				<label for="formFileLg" class="form-label h5">Upload Video</label>
+				<input class="form-control form-control-lg" id="formFileLg" type="file" name="myupload" />
+			</div>		
+			
+
+		<div class="text-right">
+			<input type="hidden" name="section" value="<%=section %>">
+			<button type="submit" class="btn btn-danger btn-lg px-5 py-2 ">Submit</button>
+			<p class="text-muted">Once created, wont be deleted</p>
+			</div>
+		</form>
+	</div>
+	<script>
+			
+	</script>
+	<%- include('../includes/footer.ejs') %>
+</body>
+
+</html>

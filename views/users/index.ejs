@@ -28,8 +28,8 @@
 		<div class="row">
 			<div class="col-lg-10 col-12 " style="height: 350px !important;">
 				<!--courses-->
-				<header class="text-center my-3  h3 text-secondary"><span class="ml-3">Our Remote-Courses</span></header>
-				<div class="courses px-0 pb-auto" style="height: 240px">
+				<header class="text-center my-3 h3 text-secondary"><span class="ml-3">Our Remote-Courses</span></header>
+				<div class="courses px-0 pb-auto" style="height: 240px;border:1px solid black ">
 					<%if(courses.length===0){%>
 						<div class="h3 text-secondary p-2">No Courses Yet! </div>
 					<%}%>
@@ -42,6 +42,7 @@
 								height="97%" width="100%" 
 								alt="<%=course.title%>">
 						</a>
+						
 					<%})%>
 						
 				</div>		

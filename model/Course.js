@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 const User = require('./User')
 
 const courseSchema = new Schema({
-	userID:{
+	creator:{
 		type:Schema.Types.ObjectId,
 		ref:'User'
 	},
@@ -24,7 +24,15 @@ const courseSchema = new Schema({
 		required:true
 	},
 	content:{
-		basics:[{
+		basic:[{
+			type:Schema.Types.ObjectId,
+			ref:'Video'
+		}],
+		intermediate:[{
+			type:Schema.Types.ObjectId,
+			ref:'Video'
+		}],
+		advance:[{
 			type:Schema.Types.ObjectId,
 			ref:'Video'
 		}]

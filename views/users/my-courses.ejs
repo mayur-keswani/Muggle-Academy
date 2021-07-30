@@ -1,0 +1,25 @@
+<%- include('../includes/header.ejs')%>
+<%- include('../includes/navigation.ejs') %>
+
+	<header class="text-center my-3  h3 text-secondary"><span class="ml-3">Our Remote-Courses</span></header>
+	<div class="courses px-0 pb-auto" style="height: 240px">
+		<%if(courses.length===0){%>
+			<div class="h4 text-danger p-2">You are not enrolled in any course yet! </div>
+		<%}%>
+		<% courses.forEach(course=>{%>
+			<a class="card course-card pb-1 px-0 pt-0"
+				href="/course-content/<%=course.courseID._id%>" 
+				style="width: 300px; height: 200px;">
+				<img class="course-thumbnail card-img" 
+					src="<%=course.courseID.thumbnail%>" 
+					height="97%" width="100%" 
+					alt="<%=course.courseID.title%>">
+			</a>
+		<%})%>
+			
+	</div>
+
+<%- include('../includes/footer.ejs') %>
+</body>
+
+</html>

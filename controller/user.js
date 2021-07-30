@@ -64,8 +64,6 @@ exports.getNotices=(req,res)=>{
         		return r;
     		}, Object.create(null));
 
-			console.log(result);
-
 			res.render('users/notices',{
 				isAdmin:(req.user  && req.user.role==='admin')?true : false,
 				isAutherized:(req.user)?true : false,
@@ -84,10 +82,8 @@ exports.getNotices=(req,res)=>{
 exports.getNoticeDetail=(req,res)=>{
 	
 	let notice_id=req.params.id;
-	console.log(notice_id)
 	Notice.findById(notice_id)
 		.then(notice=>{
-			console.log(notice)
 			res.render('users/notice-detail',{
 				notice:notice,
 				isAdmin:(req.user  && req.user.role==='admin')?true : false,
@@ -229,7 +225,6 @@ exports.getArchieve=(req,res)=>{
 		.populate('archieved.items.noticeId')
 		.exec((err,user)=>{
 			if(!err){
-				console.log(user.archieved.items)
 				let notices=user.archieved.items
 				res.render('users/archieve',{
 					notices:notices,
@@ -301,13 +296,80 @@ exports.getNoticeDownload=(req,res)=>{
 // @Desc : Get Full-Course Description 
 exports.getCourseDetail=(req,res)=>{
 	Course.findById(req.params.id)
+		.populate('content.basic')
+		.populate('content.intermediate')
+		.populate('content.Advance')
 		.then(course=>{
 			res.render('users/course-detail',{
 				isAdmin:(req.user  && req.user.role==='admin')?true : false,
-						isAutherized:(req.user)?true : false,
+				isAutherized:(req.user)?true : false,
 				username:(req.user)? req.user.username :null,
 				course:course
 			})
 		
 		})
+}
+
+exports.getMyCourses=(req,res)=>{
+
+	User.findById(req.user)
+		.populate('course_enrolled.courseID')
+		.exec((error,user)=>{
+			if(error){
+				throw new Error('Couldnt able to fetch User !')
+			}
+			res.render('users/my-courses',{
+				isAdmin:(req.user  && req.user.role==='admin')?true : false,
+				isAutherized:(req.user)?true : false,
+				username:(req.user)? req.user.username :null,
+				courses:user.course_enrolled
+			})
+		})
+	
+}
+exports.getPurchaseCourse=(req,res)=>{
+	let course;
+	console.log(req.params.id)
+	Course.findById(req.params.id)
+		.then(result=>{
+			console.log(result)
+			course=result
+			return User.findById(req.user)
+				
+		})
+		.then(user=>{
+			console.log(course)
+			let payload={
+				courseID:course._id,
+				date:Date.now(),
+				price:course.price
+			}
+			user.course_enrolled.push(payload);
+			user.save();
+		})
+		.then(result=>{
+			console.log(result);
+			res.redirect('/my-courses')
+		})
+		.catch(error=>{
+			console.log(error)
+		})
+}
+
+exports.getCourseContent=(req,res)=>{
+	Course
+		.findById(req.params.id)
+		.populate('content.basic')
+		.populate('content.intermediate')
+		.populate('content.Advance')
+		.then(course=>{
+			res.render('users/course-content',{
+				course:course,
+				isAdmin:(req.user)?true : false,
+				isAutherized:(req.user)?true : false,
+				username:(req.user)? req.user.username :null,
+
+		})
+		
+	})
 }

@@ -23,6 +23,19 @@ const userSchema=new Schema({
 		type:Date,
 		default:Date.now
 	},
+	course_enrolled:[{
+		courseID:{
+			type:Schema.Types.ObjectId,
+			ref:'Course'
+		},
+		date:{
+			type:Date,
+			default:Date.now
+		},
+		price:{
+			type:Number
+		}
+	}],
 	archieved:{
 		items:[{
 			noticeId:{

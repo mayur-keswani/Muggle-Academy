@@ -1,0 +1,115 @@
+<%- include('../includes/header.ejs')%>
+	
+	<style>
+		.comments-section{
+			width: 45%;
+			border-width: 2px 0px 0px 2px;
+			border-style: dotted;
+			border-color:  black;
+			
+		}
+		.lecture-structure{
+			width:55%;
+			border-width: 2px 2px 0px 0px;
+			border-style: dotted;
+			border-color:  black;
+		}
+		@media(max-width:599px){
+			.container-fluid{
+				flex-direction: column;
+			}
+			.comments-section,.lecture-structure{
+				width: 100%;
+			}
+			
+		}
+
+	</style>
+	<%- include('../includes/navigation.ejs') %>
+
+		<div class="container-fluid p-1 mt-0  d-flex">
+
+			<div class="box lecture-structure box mx-0 pt-4 px-4" style="height: 800px;">
+				<h4 class="text-secondary">Syllabus</h4>
+				<!-- Accordian Here -->
+				<div class="accordion" id="accordionExample">
+					<!-- Basic -->
+					<div class="card" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+					  <div class="card-header" id="headingOne">
+						<h2 class="mb-0">
+						  <button class="btn text-dark p-3">
+							<div class="d-flex"><h4>Basics </h4>
+								<span class="text-muted"> &nbsp;(includes<%= course.content.basic.length %> videos)</span>
+							</div>
+						  </button>
+						</h2>
+					  </div>
+				  
+					  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+						<div class="card-body list-group list-group-flush">
+							<%course.content.basic.forEach(video=>{ %>
+								<a class="list-group-item text-muted py-1" 
+									href="/play-video/<%=course.content.basic.video._id%>"><h4><%= video.title%></h4>
+									<input type="hidden" name="">
+								</a>
+							<% })%>
+						</div>
+					  </div>
+					</div>
+
+					<!-- Intermediate -->
+					<div class="card" type="button" 
+						data-toggle="collapse" 
+						data-target="#collapseTwo" aria-expanded="false" 		
+						aria-controls="collapseTwo">
+					  <div class="card-header" id="headingTwo">
+						<h2 class="mb-0">
+							<button class="btn text-dark p-3" >
+								<div class="d-flex"><h4>Intermediate </h4>
+									<span class="text-muted"> &nbsp;(includes<%= course.content.intermediate.length %> videos)</span>
+								</div>
+							</button>
+						</h2>
+					  </div>
+					  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+						<div class="card-body">
+							<%course.content.intermediate.forEach(video=>{ %>
+								<a class="list-group-item text-muted py-1" href="#"><h4><%= video.title%></h4></a>
+							<% })%>
+						</div>
+						
+					  </div>
+					</div>
+
+					<!-- Advance -->
+					<div class="card" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					  <div class="card-header" id="headingThree">
+						<h2 class="mb-0">
+							<button class="btn text-dark p-3" >
+								<div class="d-flex"><h4>Advance </h4>
+									<span class="text-muted"> &nbsp;(includes<%= course.content.advance.length %> videos)</span>
+								</div>
+							</button>
+						</h2>
+					  </div>
+					  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+						<div class="card-body">
+							<%course.content.advance.forEach(video=>{ %>
+								<a class="list-group-item text-muted py-1" href="#"><h4><%= video.title%></h4></a>
+							<% })%>
+						</div>
+					  </div>
+					</div>
+				  </div>
+			</div>
+			<div class="comments-section" >
+				<div class="h4 text-secondary p-3">Comments Section</div>
+
+			</div>			
+						
+	</div>
+
+	<%- include('../includes/footer.ejs') %>
+</body>
+
+</html>

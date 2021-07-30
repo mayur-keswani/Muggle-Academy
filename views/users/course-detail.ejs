@@ -40,7 +40,7 @@
 				<div class="card" style="width: 100%;">
 					
 					<img class="card-img-top p-4 img-thumbnail img-fluid" 
-					src="<%=course.thumbnail %>" alt="<%=course.title%>"/>
+					src="<%= course.thumbnail %>" alt="<%=course.title%>"/>
 		
 					<div class="card-body">
 					  <div class="card-text ">
@@ -53,7 +53,8 @@
 							<span class="text-info" >77% OFF</span>
 						  </div>
 						 <div class="card-footer bg-white text-center">
-							 <button class="btn btn-success btn-lg px-5 py-3">Buy Now</button>
+							 <a class="btn btn-success btn-lg px-5 py-3" 
+							 	href="/purchase-course/<%= course._id%>">Buy Now</a>
 						 </div>
 					  </div>
 					</div>
@@ -63,50 +64,86 @@
 				<h4 class="text-secondary">Syllabus</h4>
 				<!-- Accordian Here -->
 				<div class="accordion" id="accordionExample">
+					<!-- Basic -->
 					<div class="card" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 					  <div class="card-header" id="headingOne">
 						<h2 class="mb-0">
 						  <button class="btn text-dark p-3" >
-							<h4>#1 Basics </h4>
+							<div class="d-flex"><h4>Basics </h4>
+								<span class="text-muted"> &nbsp;(includes<%= course.content.basic.length %> videos)</span>
+							</div>
 						  </button>
 						</h2>
 					  </div>
 				  
 					  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-						<div class="card-body">
-						  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						<div class="card-body list-group list-group-flush">
+							<%course.content.basic.forEach(video=>{ %>
+								<a class="list-group-item text-muted py-1" href="#"><h4><%= video.title%></h4></a>
+							<% })%>
+						</div>
+						<div class="card-footer text-center bg-white pb-0">
+							<a class="btn btn-outline-warning btn-lg" href="/upload-video/<%= course._id%>/?section=Basic">
+								<i class="fas fa-upload fa-3x"></i>Upload Videos
+							</a>
+							<p class="text-muted">Once uploaded, it won't be deleted</p>
 						</div>
 					  </div>
 					</div>
+
+					<!-- Intermediate -->
 					<div class="card" type="button" 
 						data-toggle="collapse" 
 						data-target="#collapseTwo" aria-expanded="false" 		
 						aria-controls="collapseTwo">
 					  <div class="card-header" id="headingTwo">
 						<h2 class="mb-0">
-						  <button class="btn text-dark p-3 collapsed" >
-							<h4>#2 Intermediate</h4> 
-						  </button>
+							<button class="btn text-dark p-3" >
+								<div class="d-flex"><h4>Intermediate </h4>
+									<span class="text-muted"> &nbsp;(includes<%= course.content.intermediate.length %> videos)</span>
+								</div>
+							</button>
 						</h2>
 					  </div>
 					  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
 						<div class="card-body">
-						  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+							<%course.content.intermediate.forEach(video=>{ %>
+								<a class="list-group-item text-muted py-1" href="#"><h4><%= video.title%></h4></a>
+							<% })%>
+						</div>
+						<div class="card-footer text-center bg-white pb-0">
+							<a class="btn btn-outline-warning btn-lg" 
+							   href="/upload-video/<%= course._id%>/?section=Intermediate">
+								<i class="fas fa-upload fa-3x"></i>Upload Videos
+							</a>
+							<p class="text-muted">Once uploaded, it won't be deleted</p>
 						</div>
 					  </div>
 					</div>
 
+					<!-- Advance -->
 					<div class="card" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
 					  <div class="card-header" id="headingThree">
 						<h2 class="mb-0">
-						  <button class="btn text-dark p-3 collapsed" >
-							<h4>#3 Advance</h4> 
-						  </button>
+							<button class="btn text-dark p-3" >
+								<div class="d-flex"><h4>Advance </h4>
+									<span class="text-muted"> &nbsp;(includes<%= course.content.advance.length %> videos)</span>
+								</div>
+							</button>
 						</h2>
 					  </div>
 					  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
 						<div class="card-body">
-						  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+							<%course.content.advance.forEach(video=>{ %>
+								<a class="list-group-item text-muted py-1" href="#"><h4><%= video.title%></h4></a>
+							<% })%>
+						</div>
+						<div class="card-footer text-center bg-white pb-0">
+							<a class="btn btn-outline-warning btn-lg" 
+								href="/upload-video/<%= course._id%>/?section=Advance">
+								<i class="fas fa-upload fa-3x"></i>Upload Videos
+							</a>
+							<p class="text-muted">Once uploaded, it won't be deleted</p>
 						</div>
 					  </div>
 					</div>
