@@ -49,9 +49,10 @@
 						<div class="card-body list-group list-group-flush">
 							<%course.content.basic.forEach(video=>{ %>
 								<a class="list-group-item text-muted py-1" 
-									href="/play-video/<%=course.content.basic.video._id%>"><h4><%= video.title%></h4>
-									<input type="hidden" name="">
+									href="/play-video/<%=video._id%>" target="_blank">
+									<h4><%= video.title%></h4>
 								</a>
+								
 							<% })%>
 						</div>
 					  </div>
@@ -74,7 +75,10 @@
 					  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
 						<div class="card-body">
 							<%course.content.intermediate.forEach(video=>{ %>
-								<a class="list-group-item text-muted py-1" href="#"><h4><%= video.title%></h4></a>
+								<a class="list-group-item text-muted py-1" 
+									href="/play-video/<%=video._id%>" target="_blank">
+									<h4><%= video.title%></h4>
+								</a>
 							<% })%>
 						</div>
 						
@@ -95,7 +99,10 @@
 					  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
 						<div class="card-body">
 							<%course.content.advance.forEach(video=>{ %>
-								<a class="list-group-item text-muted py-1" href="#"><h4><%= video.title%></h4></a>
+								<a class="list-group-item text-muted py-1" 
+									href="/play-video/<%=video._id%>" target="_blank">
+									<h4><%= video.title%></h4>
+								</a>
 							<% })%>
 						</div>
 					  </div>

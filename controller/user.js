@@ -2,6 +2,7 @@ const Post =require('../model/Post')
 const Notice=require('../model/Notice')
 const Profile=require('../model/Profile')
 const User =require('../model/User')
+const Video =require('../model/Video')
 
 const pdfDocument =require('pdfkit')
 const fs=require('fs')
@@ -372,4 +373,20 @@ exports.getCourseContent=(req,res)=>{
 		})
 		
 	})
+}
+
+exports.getVideoPlayer=(req,res)=>{
+	
+	Video.findById(req.params.id)
+		.then(video=>{
+			let isEnrolledCourse=req.user.course_enrolled.findIndex(course=>{ course.courseID.toString() === video.courseID});
+			if(isEnrolledCourse>=0){
+				res.render('users/video-player',{
+					video:video,
+					isAdmin:(req.user)?true : false,
+					isAutherized:(req.user)?true : false,
+					username:(req.user)? req.user.username :null,
+				})
+			}
+		})
 }

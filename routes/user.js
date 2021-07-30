@@ -30,4 +30,5 @@ router.get('/my-courses',isAuthenticated,userController.getMyCourses)
 router.get('/purchase-course/:id',isAuthenticated,userController.getPurchaseCourse);;
 
 router.get('/course-content/:id',isAuthenticated,userController.getCourseContent)
+router.get('/play-video/:id',isAuthenticated,userController.getVideoPlayer)
 module.exports=router
