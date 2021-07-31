@@ -1,4 +1,4 @@
-# Muggle Academy🖥️
+# Muggle Academy 👨‍🏫
  A deshboard  for school/college/corporate business institution to launch their video-courses and to post their photos, issue notice/articles for upcoming events, code snippets and funny stuff.
 
 ### To Run
@@ -10,7 +10,7 @@ nodemon / node server.js
 After running above commands , your website will be live: Open http://localhost:8080 to view it in the browser.
 
 ## Stack Used 
->Backend : nodejs
+> Backend : nodejs
 
 > ORM : Mongoose
 
