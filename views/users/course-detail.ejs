@@ -82,12 +82,14 @@
 								<a class="list-group-item text-muted py-1" href="#"><h4><%= video.title%></h4></a>
 							<% })%>
 						</div>
+						<%if(amICreator){%>
 						<div class="card-footer text-center bg-white pb-0">
 							<a class="btn btn-outline-warning btn-lg" href="/upload-video/<%= course._id%>/?section=Basic">
 								<i class="fas fa-upload fa-3x"></i>Upload Videos
 							</a>
 							<p class="text-muted">Once uploaded, it won't be deleted</p>
 						</div>
+						<% } %>
 					  </div>
 					</div>
 
@@ -111,6 +113,7 @@
 								<a class="list-group-item text-muted py-1" href="#"><h4><%= video.title%></h4></a>
 							<% })%>
 						</div>
+						<%if(amICreator){%>
 						<div class="card-footer text-center bg-white pb-0">
 							<a class="btn btn-outline-warning btn-lg" 
 							   href="/upload-video/<%= course._id%>/?section=Intermediate">
@@ -118,6 +121,7 @@
 							</a>
 							<p class="text-muted">Once uploaded, it won't be deleted</p>
 						</div>
+						<% } %>
 					  </div>
 					</div>
 
@@ -138,13 +142,16 @@
 								<a class="list-group-item text-muted py-1" href="#"><h4><%= video.title%></h4></a>
 							<% })%>
 						</div>
+						<%if(amICreator){%>
 						<div class="card-footer text-center bg-white pb-0">
-							<a class="btn btn-outline-warning btn-lg" 
-								href="/upload-video/<%= course._id%>/?section=Advance">
-								<i class="fas fa-upload fa-3x"></i>Upload Videos
-							</a>
+							
+								<a class="btn btn-outline-warning btn-lg" 
+									href="/upload-video/<%= course._id%>/?section=Advance">
+									<i class="fas fa-upload fa-3x"></i>Upload Videos
+								</a>
 							<p class="text-muted">Once uploaded, it won't be deleted</p>
 						</div>
+						<% } %>
 					  </div>
 					</div>
 				  </div>

@@ -80,6 +80,14 @@ app.use(userRoute)
 app.use(adminRoute)
 app.use(authRoute)
 
+app.use((req,res)=>{
+	res.render('error/404')
+})
+
+app.use((error,req,res,next)=>{
+	res.render('error/403')
+})
+
 app.use(helmet());      // secure your Express apps by setting various HTTP headers
 app.use(compression());
 

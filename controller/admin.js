@@ -9,23 +9,7 @@ const Course = require('../model/Course');
 const Video = require('../model/Video');
 
 
-const cloudinaryUploader=async(image_path)=>{
-	let image_url;
-	console.log("REACHED TO FUNCTION")
-	image_url=await cloudinary.uploader.upload(image_path,{resource_type: "video",},(error,result)=>{
-				if(!error){
-					console.log("CLOUDINARI INTIGRATED SUCCESSFULLY")
-					url=result.url
-					console.log(url)
-					return url
-				}	
-				else{			
-					console.log(error)
-				}
-		
-	})
-	return (image_url)?image_url:null
-}
+
 // Type : GET
 // Access : Private (Only For Admin)
 // @Desc : Page to Upload Post For Notice-Board
@@ -40,7 +24,7 @@ exports.getUploadPost=(req,res)=>{
 // Type : POST
 // Access : Private (Only For Admin)
 // @Desc : Upload Post OnTo The Server
-exports.postUploadPost=(req,res)=>{
+exports.postUploadPost=(req,res,next)=>{
 	console.log("message"+"post going")
 	console.log(req.file)
 	let image=req.file.path;
@@ -70,7 +54,10 @@ exports.postUploadPost=(req,res)=>{
 							  res.redirect('/');
 						  })
 						  .catch(err=>{
+							  const error=new Error("Couldn't able to Upload-Post ")
 							  console.log(err);
+							  next(error)
+							  
 						  })
 				
 			})
@@ -91,7 +78,7 @@ exports.getIssueNotice=(req,res)=>{
 // Type : POST
 // Access : Private (Only For Admin)
 // @Desc : Upload Notice To Server
-exports.postIssueNotice=(req,res)=>{
+exports.postIssueNotice=(req,res,next)=>{
 	const subject =req.body.subject;
 	const content=req.body.content;
 	const designation=req.body.designation 
@@ -108,7 +95,10 @@ exports.postIssueNotice=(req,res)=>{
 			res.redirect('/notices')
 		})
 		.catch(err=>{
+			const error=new Error("Couldn't able to Upload-Notice ")
 			console.log(err)
+			next(error)
+			
 		})
 }
 
@@ -141,11 +131,15 @@ exports.postLaunchCourse=(req,res,next)=>{
 			console.log("Course Created Successfully")
 			res.redirect('/')
 		})
+		.catch(err=>{
+			const error=new Error("Couldn't able to Create-Course")
+			console.log(err)
+			next(error)
+		})
 }
 
-exports.getUploadVideo=(req,res)=>{
 
-	
+exports.getUploadVideo=(req,res,next)=>{
 	Course.findById(req.params.id)
 		.then(course=>{
 			if(course.creator.toString()===req.user._id.toString()){
@@ -159,12 +153,14 @@ exports.getUploadVideo=(req,res)=>{
 			}else{
 				console.log("You are not autherized")
 			}
-		}).catch(error=>{
-			console.log(error)
+		}).catch(err=>{
+			const error=new Error("Couldn't able to get Uploaded-Video ")
+			console.log(err)
+			next(error)
 		})
 }
 
-exports.postUploadVideo=(req,res)=>{
+exports.postUploadVideo=(req,res,next)=>{
 	
 	const id= req.params.id;
 	const title=req.body.title;
@@ -196,7 +192,6 @@ exports.postUploadVideo=(req,res)=>{
 				})
 				.then(course=>{
 					if(section==='Basic'){
-						console.log("HERE");
 						console.log(course.content);
 						console.log(course.basic);
 						course.content.basic.push(video._id)
@@ -219,7 +214,9 @@ exports.postUploadVideo=(req,res)=>{
 				})
 		}	
 		else{			
+			const error=new Error("Couldn't able to Upload your Video")
 			console.log(error)
+			next(error)
 		}
 
 	})

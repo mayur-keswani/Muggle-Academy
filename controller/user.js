@@ -16,7 +16,7 @@ const Course = require('../model/Course')
 // Type : GET
 // Access : Public 
 // @Desc :Get Index (Carousel Of Posts)
-exports.getIndex=(req,res)=>{
+exports.getIndex=(req,res,next)=>{
 	
 	let posts;
 	let notices;
@@ -43,7 +43,9 @@ exports.getIndex=(req,res)=>{
 			})
 		})
 		.catch(err=>{
+			const error=new Error("Couldn't able to Load")
 			console.log(err)
+			next(error)
 		})
 	
 }
@@ -94,7 +96,9 @@ exports.getNoticeDetail=(req,res)=>{
 			})
 		})
 		.catch(err=>{
+			const error=new Error("Couldn't able to Load...")
 			console.log(err)
+			next(error)
 		})
 }
 
@@ -154,7 +158,7 @@ const cloudinaryUploader=async(image_path)=>{
 	})
 	return (image_url)?image_url:null
 }
-exports.postUserProfile=async(req,res)=>{
+exports.postUserProfile=async(req,res,next)=>{
 	let profile_pic = (req.file)?req.file:null
 	const college = req.body.college 
 	const course = req.body.course
@@ -184,7 +188,9 @@ exports.postUserProfile=async(req,res)=>{
 			res.redirect('/');
 		})
 		.catch(err=>{
+			const error=new Error("Couldn't able to update User-Profile")
 			console.log(err)
+			next(error)
 		})
 
 }
@@ -192,7 +198,7 @@ exports.postUserProfile=async(req,res)=>{
 // Type : GET
 // Access : Public (Loggin-required)
 // @Desc : Archieve notice
-exports.getNoticeSaved=(req,res)=>{
+exports.getNoticeSaved=(req,res,next)=>{
 	let items=[...req.user.archieved.items]
 	const newNotice={ noticeId: req.params.id }
 	items.push(newNotice);
@@ -214,7 +220,9 @@ exports.getNoticeSaved=(req,res)=>{
 			res.redirect('/notices')
 		})
 		.catch(err=>{
+			const error=new Error("Couldn't able to get Saved-Notive")
 			console.log(err)
+			next(error)
 		})
 }
 
@@ -295,7 +303,7 @@ exports.getNoticeDownload=(req,res)=>{
 // Type : GET
 // Access : Public	(Logged-in Not required)
 // @Desc : Get Full-Course Description 
-exports.getCourseDetail=(req,res)=>{
+exports.getCourseDetail=(req,res,next)=>{
 	Course.findById(req.params.id)
 		.populate('content.basic')
 		.populate('content.intermediate')
@@ -305,41 +313,48 @@ exports.getCourseDetail=(req,res)=>{
 				isAdmin:(req.user  && req.user.role==='admin')?true : false,
 				isAutherized:(req.user)?true : false,
 				username:(req.user)? req.user.username :null,
-				course:course
+				course:course,
+				amICreator:(req.user)?(course.creator.toString()===req.user._id.toString()):false
 			})
 		
 		})
+		.catch(err=>{
+			const error=new Error("Couldnt able to fetch Course-Detail")
+			console.log(err)
+			next(error)
+		})
 }
 
-exports.getMyCourses=(req,res)=>{
+exports.getMyCourses=(req,res,next)=>{
 
 	User.findById(req.user)
 		.populate('course_enrolled.courseID')
-		.exec((error,user)=>{
-			if(error){
-				throw new Error('Couldnt able to fetch User !')
+		.exec((err,user)=>{
+			if(user){
+				res.render('users/my-courses',{
+					isAdmin:(req.user  && req.user.role==='admin')?true : false,
+					isAutherized:(req.user)?true : false,
+					username:(req.user)? req.user.username :null,
+					courses:user.course_enrolled
+				})
+			}else{
+				const error=new Error("Couldn't able to get your-course")
+				console.log(err)
+				next(error)
 			}
-			res.render('users/my-courses',{
-				isAdmin:(req.user  && req.user.role==='admin')?true : false,
-				isAutherized:(req.user)?true : false,
-				username:(req.user)? req.user.username :null,
-				courses:user.course_enrolled
-			})
 		})
+		
 	
 }
-exports.getPurchaseCourse=(req,res)=>{
+exports.getPurchaseCourse=(req,res,next)=>{
 	let course;
-	console.log(req.params.id)
 	Course.findById(req.params.id)
 		.then(result=>{
-			console.log(result)
 			course=result
 			return User.findById(req.user)
 				
 		})
 		.then(user=>{
-			console.log(course)
 			let payload={
 				courseID:course._id,
 				date:Date.now(),
@@ -352,12 +367,14 @@ exports.getPurchaseCourse=(req,res)=>{
 			console.log(result);
 			res.redirect('/my-courses')
 		})
-		.catch(error=>{
-			console.log(error)
+		.catch(err=>{
+			const error=new Error("Couldn't able to Purchase-Course")
+			console.log(err)
+			next(error)
 		})
 }
 
-exports.getCourseContent=(req,res)=>{
+exports.getCourseContent=(req,res,next)=>{
 	Course
 		.findById(req.params.id)
 		.populate('content.basic')
@@ -375,11 +392,13 @@ exports.getCourseContent=(req,res)=>{
 	})
 }
 
-exports.getVideoPlayer=(req,res)=>{
+exports.getVideoPlayer=(req,res,next)=>{
 	
 	Video.findById(req.params.id)
 		.then(video=>{
-			let isEnrolledCourse=req.user.course_enrolled.findIndex(course=>{ course.courseID.toString() === video.courseID});
+			let isEnrolledCourse=req.user.course_enrolled
+				.findIndex(course=> course.courseID.toString() === video.courseID.toString());
+			
 			if(isEnrolledCourse>=0){
 				res.render('users/video-player',{
 					video:video,
@@ -389,4 +408,5 @@ exports.getVideoPlayer=(req,res)=>{
 				})
 			}
 		})
+
 }

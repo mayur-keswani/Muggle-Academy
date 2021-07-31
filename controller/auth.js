@@ -15,7 +15,7 @@ exports.getLogin=(req,res)=>{
 		message:message
 	})
 }
-exports.postLogin=(req,res)=>{
+exports.postLogin=(req,res,next)=>{
 	const email=req.body.email;
 	const password=req.body.password;
 	const username=req.body.username
@@ -43,13 +43,17 @@ exports.postLogin=(req,res)=>{
 							res.redirect('/signin')
 						}
 					})
-					.catch(error=>{
-						console.log(error)
+					.catch(err=>{
+						const error=new Error("Couldn't able to Login")
+						console.log(err)
+						next(error)
 					})
 			}
 		})
-		.catch(error=>{
-			console.log(error)
+		.catch(err=>{
+			const error=new Error("Couldn't able to Login")
+			console.log(err)
+			next(error)
 		})
 
 }
@@ -63,8 +67,9 @@ exports.getSignup=(req,res)=>{
 	}
 	res.render('auth/signup.ejs',{message:message})
 }
-exports.postSignup=(req,res)=>{
-	
+
+
+exports.postSignup=(req,res,next)=>{
 	const username=req.body.username;
 	const email=req.body.email;
 	const password=req.body.password;
@@ -95,7 +100,7 @@ exports.postSignup=(req,res)=>{
 						
 						req.session.isLoggedIn=true;
 						req.session.user=user;
-						console.log("SignIn successfully")
+						console.log("SignUp successfully")
 
 						const profile=new Profile({
 							userId:user._id,
@@ -109,13 +114,17 @@ exports.postSignup=(req,res)=>{
 						res.redirect('/');
 					})
 					.catch(err=>{
+						const error=new Error("Couldn't able to Signup")
 						console.log(err)
+						next(error)
 					})
 				
 			}
 		})
-		.catch(error=>{
-			console.log(error)
+		.catch(err=>{
+			const error=new Error("Couldn't able to Signup")
+			console.log(err)
+			next(error)
 		})
 	
 }
