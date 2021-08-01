@@ -63,7 +63,7 @@ exports.getNotices=(req,res)=>{
 
   			let result = {} 
 			result =notices.reduce(function (r, a) {  
-        		r[a.date.toDateString()] = r[a.date] || [];
+        		r[a.date.toDateString()] = r[a.date.toDateString()] || [];
         		r[a.date.toDateString()].push(a);
         		return r;
     		}, Object.create(null));
