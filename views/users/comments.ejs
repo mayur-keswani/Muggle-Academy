@@ -1,0 +1,32 @@
+<%- include('../includes/header.ejs')%>
+<%- include('../includes/navigation.ejs') %>
+
+<div class="container">
+	<div class="mx-2" style="border-bottom: 1px solid black;">
+		<p class="h5"><%= question.username%></p>
+		<p class="text-muted mx-2"><%=question.question%></p>	
+	</div>
+	
+	<div class="comment-list mt-4" style="height: 50vh; overflow-y: scroll;">
+		<% question.comments.forEach(comment=>{%>
+			<div class="mx-2" style="border-bottom: 1px solid black;">
+				<p class="h5 text-info"><%= comment.userID.username%> </p>
+				<span class="text-muted">comment on <%=comment.date.toDateString()%></span>
+				<p class="mx-2"><%=comment.answer%></p>	
+			</div>
+		<% }) %>
+	</div>
+	<div>
+		<form action="/add-comment/<%=question._id%>" method="POST">
+		<div class="form-group">
+			<label for="exampleFormControlTextarea1">Add Your Comment</label>
+			<textarea class="form-control" name="comment" rows="3"></textarea>
+		</div>
+		<button type="submit" class="btn btn-info btn-block btn-lg">Add Comment <i class="fas fa-paper-plane"></i></button>
+		</form>
+	</div>
+</div>
+<%- include('../includes/footer.ejs') %>	
+</body>
+
+</html>

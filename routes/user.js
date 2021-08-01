@@ -33,4 +33,7 @@ router.get('/course-content/:id',isAuthenticated,userController.getCourseContent
 router.get('/play-video/:id',isAuthenticated,userController.getVideoPlayer)
 
 router.post('/post-question/:id',isAuthenticated,userController.postQuestion)
+
+router.get('/add-comment/:id',isAuthenticated,userController.getAddComment)
+router.post('/add-comment/:id',isAuthenticated,userController.postAddComment)
 module.exports=router

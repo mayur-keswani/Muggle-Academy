@@ -427,8 +427,7 @@ exports.postQuestion=(req,res)=>{
 		.then(result=>{
 			
 			return Course.findById(req.params.id)
-			
-			
+				
 		}).then(course=>{
 			course.questions.push(ques._id)
 			course.save()
@@ -439,5 +438,37 @@ exports.postQuestion=(req,res)=>{
 		.catch(error=>{
 			console.log("Cant able to post question : "+error);
 
+		})
+}
+
+exports.getAddComment=(req,res,next)=>{
+	Question.findById(req.params.id)
+		.populate('comments.userID')
+		.then(question=>{
+			res.render('users/comments',{
+				question:question,
+				isAdmin:(req.user)?true : false,
+				isAutherized:(req.user)?true : false,
+				username:(req.user)? req.user.username :null,
+			})
+		})
+		.catch(err=>{
+			const error=new Error("Couldn't get comments");
+			next(error)
+		})
+}
+
+exports.postAddComment=(req,res,next)=>{
+	Question.findById(req.params.id)
+		.then(question=>{
+			question.comments.push({userID:req.user,answer:req.body.comment})
+			question.save();
+		})
+		.then(result=>{
+			res.redirect('/add-comment/'+req.params.id)
+		})
+		.catch(err=>{
+			const error=new Error("Couldnt get comments");
+			next(error)
 		})
 }
