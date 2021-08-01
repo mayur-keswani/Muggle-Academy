@@ -68,6 +68,7 @@ exports.getNotices=(req,res)=>{
         		return r;
     		}, Object.create(null));
 
+			console.log(result)
 			res.render('users/notices',{
 				isAdmin:(req.user  && req.user.role==='admin')?true : false,
 				isAutherized:(req.user)?true : false,

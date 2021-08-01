@@ -50,7 +50,7 @@
 							<%course.content.basic.forEach(video=>{ %>
 								<a class="list-group-item text-muted py-1" 
 									href="/play-video/<%=video._id%>" target="_blank">
-									<h4><%= video.title%></h4>
+									<h5><%= video.title%></h5>
 								</a>
 								
 							<% })%>
@@ -77,7 +77,7 @@
 							<%course.content.intermediate.forEach(video=>{ %>
 								<a class="list-group-item text-muted py-1" 
 									href="/play-video/<%=video._id%>" target="_blank">
-									<h4><%= video.title%></h4>
+									<h5><%= video.title%></h5>
 								</a>
 							<% })%>
 						</div>
@@ -101,7 +101,7 @@
 							<%course.content.advance.forEach(video=>{ %>
 								<a class="list-group-item text-muted py-1" 
 									href="/play-video/<%=video._id%>" target="_blank">
-									<h4><%= video.title%></h4>
+									<h5><%= video.title%></h5>
 								</a>
 							<% })%>
 						</div>
