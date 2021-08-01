@@ -1,5 +1,5 @@
 # Muggle Academy 👨‍🏫
- A deshboard  for school/college/corporate business institution to launch their video-courses and to post their photos, issue notice/articles for upcoming events, code snippets and funny stuff.
+ A deshboard  for school/college/corporate business institution to launch their video-courses and provide discussion panel for posting questions. Autherities can also post their photos, issue notice/articles for upcoming events, code snippets and funny stuff.
 
 ### To Run
 do git clone of the repository https://github.com/mayur-keswani/Digital-Notice-Board.git. In the project directory, you can run:
@@ -37,27 +37,32 @@ After running above commands , your website will be live: Open http://localhost:
 
  2) User can enrolled and access the course-video after making payment
 
- 3) Carousel to Show All Posts.
+ 3) Enrolled user will get discusion section to ask doubts.
 
- 4) Not only Posts , Autherities can issue Notice which 
+ 4) Carousel to Show All Posts.
+
+ 5) Not only Posts , Autherities can issue Notice which 
  would be presented in separate traditional notice format.
 
- 5) Implemented clean and easy Authentication Flow 
+ 6) Implemented clean and easy Authentication Flow 
 
- 6) Allowing to issue notice & post photos ,only to Admin authorities (Autherization flow)
+ 7) Allowing to issue notice & post photos ,only to Admin authorities (Autherization flow)
 
- 7) Notice can be downloaded for offline read
+ 8) Notice can be downloaded for offline read
 
- 8) Student can share Notice with other social media platform.
+ 9) Student can share Notice with other social media platform.
 
- 9) Student can Set/Update their profile details i.e, college,semester,course, profile_pic information etc.
+ 10) Student can Set/Update their profile details i.e, college,semester,course, profile_pic information etc.
 
- 10) session based login-logout option
+ 11) session based login-logout option
 
- 11) User can archieved notice for later read  
- 12) Secured headers for protection of app
- 13) Compressed the size of assets while loading it up on client browser
- 14) Uploading/Fetching image on cloud i.e Cloudinary
+ 12) User can archieved notice for later read  
+ 
+ 13) Secured headers for protection of app
+ 
+ 14) Compressed the size of assets while loading it up on client browser
+ 
+ 15) Uploading/Fetching image on cloud i.e Cloudinary
 
 
 
