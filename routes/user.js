@@ -31,4 +31,6 @@ router.get('/purchase-course/:id',isAuthenticated,userController.getPurchaseCour
 
 router.get('/course-content/:id',isAuthenticated,userController.getCourseContent)
 router.get('/play-video/:id',isAuthenticated,userController.getVideoPlayer)
+
+router.post('/post-question/:id',isAuthenticated,userController.postQuestion)
 module.exports=router

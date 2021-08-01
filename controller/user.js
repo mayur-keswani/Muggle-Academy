@@ -3,6 +3,7 @@ const Notice=require('../model/Notice')
 const Profile=require('../model/Profile')
 const User =require('../model/User')
 const Video =require('../model/Video')
+const Question = require('../model/Questions')
 
 const pdfDocument =require('pdfkit')
 const fs=require('fs')
@@ -380,7 +381,9 @@ exports.getCourseContent=(req,res,next)=>{
 		.populate('content.basic')
 		.populate('content.intermediate')
 		.populate('content.Advance')
+		.populate('questions')
 		.then(course=>{
+			
 			res.render('users/course-content',{
 				course:course,
 				isAdmin:(req.user)?true : false,
@@ -409,4 +412,32 @@ exports.getVideoPlayer=(req,res,next)=>{
 			}
 		})
 
+}
+
+exports.postQuestion=(req,res)=>{
+	const question=req.body.question
+	const ques = new Question({
+		userID:req.user._id,
+		courseID:req.params.id,
+		question:question,
+		username:req.user.username,
+		comments:[],
+	})
+	ques.save()
+		.then(result=>{
+			
+			return Course.findById(req.params.id)
+			
+			
+		}).then(course=>{
+			course.questions.push(ques._id)
+			course.save()
+		}).then(result=>{
+			console.log("Question Post Successfully");
+			res.redirect('/course-content/'+req.params.id)
+		})
+		.catch(error=>{
+			console.log("Cant able to post question : "+error);
+
+		})
 }

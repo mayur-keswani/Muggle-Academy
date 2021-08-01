@@ -109,8 +109,40 @@
 					</div>
 				  </div>
 			</div>
-			<div class="comments-section" >
+
+			<div class="comments-section" style="overflow-x: scroll;" >
 				<div class="h4 text-secondary p-3">Comments Section</div>
+
+				<div class="questions-list" style="height: 70vh;">
+					<%course.questions.forEach(questionRef=>{ %>
+						<div class="mx-2" style="border-bottom: 1px solid black;">
+							<a class="btn btn-secondary float-right" href="/add-comment/<%=questionRef._id%>">Add Comment!</a>
+							<p class="h5"><%= questionRef.username%></p>
+							<p class="text-muted mx-2"><%=questionRef.question%></p>
+							
+						</div>
+						
+					<% }) %>
+					<div class="text-secondary text-lead"></div>
+				</div>
+
+
+
+				<form action="/post-question/<%=course._id%>" method="POST">
+				<div class="question-input-box d-flex align-items-center m-0" 
+					style="border-top: 1px solid black;height:10vh">
+					
+						<div class="form-group col-lg-10 col-8 my-2">
+							<input type="text" class="form-control form-control-lg " name="question" placeholder="Enter Question">
+						</div>
+						<div class="col-lg-2 col-4 d-flex align-items-center">
+							<button type="submit" class="btn btn-success btn-lg">Ask <i class="fas fa-paper-plane"></i></button>
+						</div>
+					
+				</div>
+				</form>
+
+				
 
 			</div>			
 						

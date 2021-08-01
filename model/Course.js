@@ -37,8 +37,14 @@ const courseSchema = new Schema({
 			ref:'Video'
 		}]
 	},
-	tags:[String]
+	questions:[{
+		type:Schema.Types.ObjectId,
+		ref:'Question',
+	}],
+	tags:[String],
 
+
+	// Questions:[ { question:"", answer:[{userID:1234, text:'This is my answer' }]    }]
 }) 
 
 module.exports= mongoose.model('Course',courseSchema)
