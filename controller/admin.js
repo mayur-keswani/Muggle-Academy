@@ -118,24 +118,30 @@ exports.postLaunchCourse=(req,res,next)=>{
 	const thumbnail=(req.file)?req.file.path:null;
 	const tags= req.body.tags.split(',')
 
-	const course = new Course({
-		creator:req.user,
-		title:title,
-		description:description,
-		price:price,
-		thumbnail:thumbnail,
-		tags:tags
-	})
-	course.save()
+	cloudinary.v2.uploader.upload(thumbnail,(error,result)=>{
+		
+		console.log(result +": result")
+		deleteFileHandler.deleteFileHandler(thumbnail)
+		const course = new Course({
+			creator:req.user,
+			title:title,
+			description:description,
+			price:price,
+			thumbnail:result.url,
+			tags:tags
+		})
+	
+		course.save()
 		.then(course=>{
 			console.log("Course Created Successfully")
-			res.redirect('/')
+			res.redirect('/course/'+course._id)
 		})
 		.catch(err=>{
 			const error=new Error("Couldn't able to Create-Course")
 			console.log(err)
 			next(error)
 		})
+	})
 }
 
 

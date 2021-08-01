@@ -33,11 +33,11 @@ After running above commands , your website will be live: Open http://localhost:
   - font-awesome icons
   
 ## Features
- 1) Autherities can launch their Video-Course
+ 1) Autherities can launch their Video-Course.
 
  2) User can enrolled and access the course-video after making payment
 
- 3) Carousel to Show All Posts 
+ 3) Carousel to Show All Posts.
 
  4) Not only Posts , Autherities can issue Notice which 
  would be presented in separate traditional notice format.

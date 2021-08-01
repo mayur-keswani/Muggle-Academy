@@ -5,7 +5,7 @@
 		.courses{
 			overflow: auto;
  			white-space: nowrap;
-			border-bottom: 2px solid black;
+			border-bottom: 2px solid black !important;
 			
 		}
 		.course-card{
@@ -29,7 +29,7 @@
 			<div class="col-lg-10 col-12 " style="height: 350px !important;">
 				<!--courses-->
 				<header class="text-center my-3 h3 text-secondary"><span class="ml-3">Our Remote-Courses</span></header>
-				<div class="courses px-0 pb-auto" style="height: 240px;border:1px solid black ">
+				<div class="courses px-0 pb-auto" style="height: 240px;">
 					<%if(courses.length===0){%>
 						<div class="h3 text-secondary p-2">No Courses Yet! </div>
 					<%}%>
@@ -63,44 +63,7 @@
 							<li class="h5 d-inline"><%= notice.subject %></li>
 							<span class="text-muted">[<%=notice.date.toLocaleDateString()%>]</span>
 						</a>
-						<a href="" class="list-group-item  my-1">
-							<li class="h5 d-inline"><%= notice.subject %></li>
-							<span class="text-muted">[<%=notice.date.toLocaleDateString()%>]</span>
-						</a>
-						<a href="" class="list-group-item  my-1">
-							<li class="h5 d-inline"><%= notice.subject %></li>
-							<span class="text-muted">[<%=notice.date.toLocaleDateString()%>]</span>	
-						</a>
-						<a href="" class="list-group-item  my-1">
-							<li class="h5 d-inline"><%= notice.subject %></li>
-							<span class="text-muted">[<%=notice.date.toLocaleDateString()%>]</span>
 						
-						</a>
-						<a href="" class="list-group-item  my-1">
-							<li class="h5 d-inline"><%= notice.subject %></li>
-							<span class="text-muted">[<%=notice.date.toLocaleDateString()%>]</span>
-						</a>
-						<a href="" class="list-group-item  my-1">
-							<li class="h5 d-inline"><%= notice.subject %></li>
-							<span class="text-muted">[<%=notice.date.toLocaleDateString()%>]</span>
-						</a>
-						<a href="" class="list-group-item  my-1">
-							<li class="h5 d-inline"><%= notice.subject %></li>
-							<span class="text-muted">[<%=notice.date.toLocaleDateString()%>]</span>
-						</a>
-						<a href="" class="list-group-item  my-1">
-							<li class="h5 d-inline"><%= notice.subject %></li>
-							<span class="text-muted">[<%=notice.date.toLocaleDateString()%>]</span>
-						</a>
-						<a href="" class="list-group-item  my-1">
-							<li class="h5 d-inline"><%= notice.subject %></li>
-							<span class="text-muted">[<%=notice.date.toLocaleDateString()%>]</span>
-						</a>
-						<a href="" class="list-group-item  my-1">
-							<li class="h5 d-inline"><%= notice.subject %></li>
-							<span class="text-muted">[<%=notice.date.toLocaleDateString()%>]</span>
-						</a>
-					
 				<% }) %>
 				</ul>
 			</div>
