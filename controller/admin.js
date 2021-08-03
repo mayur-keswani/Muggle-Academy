@@ -25,43 +25,34 @@ exports.getUploadPost=(req,res)=>{
 // Access : Private (Only For Admin)
 // @Desc : Upload Post OnTo The Server
 exports.postUploadPost=(req,res,next)=>{
-	console.log("message"+"post going")
-	console.log(req.file)
-	let image=req.file.path;
-	//  image=".concat(image)
-	 console.log(image +" is path")
+	let uploadedImage=req.file.path;
 	const heading=req.body.heading;
 	const description=req.body.description;
 	const criterion=req.body.criterion;
 		
-	
-		cloudinary.uploader.upload(image,(result)=>{
-					// console.log(error +" : error")
-					console.log(result +": result")
-					   deleteFileHandler.deleteFileHandler(image)
-					   const post=new Post({
-						 	user:req.user,
-						 	image:result.secure_url,
-						 	heading:heading,
-						 	description:description,
-						 	criterion:criterion,
-						 	cloudinary_public_id:result.public_id
-				  		  });
-						post.save()
-						  .then(result=>{
-							  console.log("Post is successfully added:)");
-							 
-							  res.redirect('/');
-						  })
-						  .catch(err=>{
-							  const error=new Error("Couldn't able to Upload-Post ")
-							  console.log(err);
-							  next(error)
+		cloudinary.v2.uploader.upload(uploadedImage,(error,result)=>{
+					
+				deleteFileHandler.deleteFileHandler(uploadedImage)
+				   const post=new Post({
+					 	user:req.user,
+					 	image:result.url,
+					 	heading:heading,						 	description:description,
+					 	criterion:criterion,
+					 	cloudinary_public_id:result.public_id
+		    		});
+					post.save()
+					  .then(result=>{
+						  console.log("Post is successfully added:)");
+						  res.redirect('/');
+					  })
+					  .catch(err=>{
+						  const error=new Error("Couldn't able to Upload-Post ")
+						  console.log(err);
+						  next(error)
 							  
-						  })
+						})
 				
 			})
-	
 }
 
 // Type : GET
