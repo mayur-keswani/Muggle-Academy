@@ -36,7 +36,8 @@ exports.postUploadPost=(req,res,next)=>{
 				   const post=new Post({
 					 	user:req.user,
 					 	image:result.url,
-					 	heading:heading,						 	description:description,
+					 	heading:heading,						 	
+						description:description,
 					 	criterion:criterion,
 					 	cloudinary_public_id:result.public_id
 		    		});
@@ -93,7 +94,9 @@ exports.postIssueNotice=(req,res,next)=>{
 		})
 }
 
-
+// Type : GET
+// Access : Private (Only For Admin)
+// @Desc : Page to Fill Details for Upcoming Course
 exports.getLaunchCourse=(req,res)=>{
 	res.render('admin/launch-course',{
 		isAdmin:(req.user  && req.user.role==='admin')?true : false,
@@ -101,8 +104,11 @@ exports.getLaunchCourse=(req,res)=>{
 		username:(req.user)? req.user.username :null
 	})
 }
+
+// Type : POST
+// Access : Private (Only For Admin)
+// @Desc : Upload Course To Server
 exports.postLaunchCourse=(req,res,next)=>{
-	console.log(req.file)
 	const title=req.body.title;
 	const description=req.body.description;
 	const price=req.body.price;
@@ -166,7 +172,7 @@ exports.postUploadVideo=(req,res,next)=>{
 	let uploaded_video=(req.file)?req.file:null;
 	let video_url;
 	
-		// video_url=await cloudinaryUploader(uploaded_video.path)
+	// video_url=await cloudinaryUploader(uploaded_video.path)
 		
 	console.log(uploaded_video)
 	cloudinary.v2.uploader.upload(uploaded_video.path,{resource_type: "video"},function(error,result){
