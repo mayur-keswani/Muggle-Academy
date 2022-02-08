@@ -29,7 +29,7 @@
 
 		<div class="container-fluid p-1 mt-0  d-flex">
 
-			<div class="box lecture-structure box mx-0 pt-4 px-4" style="height: 800px;">
+			<div class="box lecture-structure box mx-0 pt-4 px-4" >
 				<h4 class="text-secondary">Syllabus</h4>
 				<!-- Accordian Here -->
 				<div class="accordion" id="accordionExample">
@@ -107,7 +107,14 @@
 						</div>
 					  </div>
 					</div>
-				  </div>
+				</div>
+
+				<div class="mt-5"> 
+					<form > 
+						<h4 class="text-secondary">Download Course Payment Receipt</h4>
+						<a href="/course-receipt/<%=course._id%>"  type="submit" class="btn btn-outline-info">Click Here</a>
+					</form>
+				</div>
 			</div>
 
 			<div class="comments-section" style="overflow-x: scroll;" >
@@ -129,14 +136,14 @@
 
 
 				<form action="/post-question/<%=course._id%>" method="POST">
-				<div class="question-input-box d-flex align-items-center m-0" 
+				<div class="question-input-box d-flex align-items-center m-0 p-0" 
 					style="border-top: 1px solid black;height:10vh">
 					
 						<div class="form-group col-lg-10 col-8 my-2">
 							<input type="text" class="form-control form-control-lg " name="question" placeholder="Enter Question">
 						</div>
-						<div class="col-lg-2 col-4 d-flex align-items-center">
-							<button type="submit" class="btn btn-success btn-lg">Ask <i class="fas fa-paper-plane"></i></button>
+						<div class="col-lg-2 col-4 my-2 p-0">
+							<button type="submit" class="btn btn-success ">Ask <i class="fas fa-paper-plane"></i></button>
 						</div>
 					
 				</div>

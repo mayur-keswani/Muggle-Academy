@@ -27,7 +27,7 @@ const adminRoute= require('./routes/admin');
 const authRoute= require('./routes/auth');
 
 
-const port=process.env.PORT || 8080;
+const port=process.env.PORT || 9000;
 // const hostname='127.0.0.1';
 
 
@@ -101,6 +101,5 @@ app.use(compression());
 		app.listen(port)
 	})
 	.catch(error=>{
-		console.log(db)
 		console.log(error);
 	})

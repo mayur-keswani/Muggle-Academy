@@ -27,7 +27,8 @@ router.get('/archieve',isAuthenticated,userController.getArchieve)
 router.get('/course/:id',userController.getCourseDetail)
 
 router.get('/my-courses',isAuthenticated,userController.getMyCourses)
-router.get('/purchase-course/:id',isAuthenticated,userController.getPurchaseCourse);;
+router.post('/purchase-course/:id',isAuthenticated,userController.getPurchaseCourse);
+router.get('/course-receipt/:id',isAuthenticated,userController.getCourseReceipt)
 
 router.get('/course-content/:id',isAuthenticated,userController.getCourseContent)
 router.get('/play-video/:id',isAuthenticated,userController.getVideoPlayer)

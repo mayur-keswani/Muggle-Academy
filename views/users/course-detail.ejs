@@ -19,6 +19,7 @@
 			/* border: 1px solid #020101 !important; */
 
 		}
+		
 		@media(max-width:599px){
 			.container{
 				columns: 1;
@@ -36,7 +37,7 @@
 					<%= course.description%>
 				</div>
 			</div>
-			<div class="box course-price mx-0 mt-1" style="height:600px;border: 1px dotted black;">
+			<div class="box course-price mx-0 mt-1" style="height:auto;border: 1px dotted black;">
 				<div class="card" style="width: 100%;">
 					
 					<img class="card-img-top p-4 img-thumbnail img-fluid" 
@@ -53,9 +54,31 @@
 							<span class="text-info" >77% OFF</span>
 						  </div>
 						 <div class="card-footer bg-white text-center">
-							 <a class="btn btn-success btn-lg px-5 py-3" 
-							 	href="/purchase-course/<%= course._id%>">Buy Now</a>
+							<% if(!isLogin){ %>
+								<div class="h5 text-lead text-secondary">Login! to purchase this course </div>
+							<% } else if(!isAlreadyPurchased ) { %>
+						
+							 <!-- <a class="btn btn-success btn-lg px-5 py-3" 
+							 	href="/purchase-course/<%= course._id%>">Buy Now</a> -->
+							<form action="/purchase-course/<%= course._id%>" method="POST">
+        					<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        				    <script
+            					src="https://checkout.stripe.com/checkout.js" id="stripe-button" class="stripe-button btn-lg px-5 py-3"
+            					data-key="pk_test_51HVGjHGKjVBYc4dGvOFKHshkMEK5GYzoBEH6KyBWv5n4m67Z7rQ4lvA4wdb7NJdVXT9U2f6mIaExZ3EjX1paeHrc00qf5KTKsK"
+            					data-amount="<%= course.price  *100%>"
+            					data-name="Your Order"
+            					data-description="Course you purchased!"
+           	 					data-image="https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-High-Quality-Image.png"
+            					data-locale="auto"
+            					data-currency="inr">
+          					</script>
+        					</form>
+							<% } else { %>
+								<div class="h5 text-lead text-secondary">You have already purchased this course. </div>
+								<span class="text-muted">Go to my My Course Section</span>
+							<% } %>
 						 </div>
+						 
 					  </div>
 					</div>
 				  </div>
