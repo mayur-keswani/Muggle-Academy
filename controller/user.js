@@ -22,7 +22,7 @@ exports.getIndex = (req, res, next) => {
   let posts;
   let notices;
   let courses;
-  const role = req.user.role;
+  const role = req.user?req.user.role:'student';
   Post.find()
     .then((result) => {
       posts = result;
