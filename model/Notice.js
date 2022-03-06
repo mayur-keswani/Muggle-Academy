@@ -15,6 +15,11 @@ const noticeSchema = new Schema({
 		type:String,
 		required:true
 	},
+	noticeFor:{
+		type:String,
+		required:true,
+		default:"student"
+	},
 	date:{
 		type:Date,
 		default:Date.now
@@ -22,7 +27,8 @@ const noticeSchema = new Schema({
 	designation:{
 		type:String,
 		required:true,
-	}
+	},
+
 })
 
 module.exports= mongoose.model('Notice',noticeSchema)

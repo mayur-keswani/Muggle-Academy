@@ -73,14 +73,16 @@ exports.getIssueNotice=(req,res)=>{
 exports.postIssueNotice=(req,res,next)=>{
 	const subject =req.body.subject;
 	const content=req.body.content;
-	const designation=req.body.designation 
+	const designation=req.body.designation
+	const noticeFor= req.body.noticeFor 
 
-	const notice=new Notice({
-		userId:req.user._id,
-		subject:subject,
-		content:content,
-		designation:designation
-	})
+	const notice = new Notice({
+    userId: req.user._id,
+    subject: subject,
+    content: content,
+    designation: designation,
+    noticeFor:noticeFor,
+  });
 	notice.save()
 		.then(result=>{
 			console.log('Notice issued successfully');
@@ -113,6 +115,7 @@ exports.postLaunchCourse=(req,res,next)=>{
 	const description=req.body.description;
 	const price=req.body.price;
 	const thumbnail=(req.file)?req.file.path:null;
+	const facultyAccess = req.body.facultyAccess.split(',');
 	const tags= req.body.tags.split(',')
 
 	cloudinary.v2.uploader.upload(thumbnail,(error,result)=>{
@@ -120,13 +123,14 @@ exports.postLaunchCourse=(req,res,next)=>{
 		console.log(result +": result")
 		deleteFileHandler.deleteFileHandler(thumbnail)
 		const course = new Course({
-			creator:req.user,
-			title:title,
-			description:description,
-			price:price,
-			thumbnail:result.url,
-			tags:tags
-		})
+      creator: req.user,
+      title: title,
+      description: description,
+      price: price,
+      thumbnail: result.url,
+      tags: tags,
+      facultyAccess: facultyAccess,
+    });
 	
 		course.save()
 		.then(course=>{

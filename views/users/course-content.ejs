@@ -14,6 +14,21 @@
 			border-style: dotted;
 			border-color:  black;
 		}
+		.star-rating {
+  			line-height:32px;
+  			font-size:1.25em;
+			  
+		}
+
+
+		.star-rating .checked{
+			color: yellow;		
+		}
+		
+		.star-rating .unchecked{
+			
+			color: #777676;		
+		}
 		@media(max-width:599px){
 			.container-fluid{
 				flex-direction: column;
@@ -115,6 +130,23 @@
 						<a href="/course-receipt/<%=course._id%>"  type="submit" class="btn btn-outline-info">Click Here</a>
 					</form>
 				</div>
+				<div class="mt-5"> 
+					<form > 
+						<h4 class="text-secondary">Rate Our Course</h4>
+						<div class="row">
+    						<div class="col-lg-12">
+      							<div class="star-rating">
+        							<span class="fa fa-star unchecked" data-rating="1"></span>
+        							<span class="fa fa-star unchecked" data-rating="2"></span>
+        							<span class="fa fa-star unchecked" data-rating="3"></span>
+        							<span class="fa fa-star unchecked" data-rating="4"></span>
+        							<span class="fa fa-star unchecked" data-rating="5"></span>
+        							<input type="hidden" name="whatever1" class="rating-value" value="2">
+      							</div>
+    						</div>
+  						</div>
+					</form>
+				</div>
 			</div>
 
 			<div class="comments-section" style="overflow-x: scroll;" >
@@ -157,5 +189,26 @@
 
 	<%- include('../includes/footer.ejs') %>
 </body>
+	<script>
+		var $star_rating = $('.star-rating .fa');
 
+		var SetRatingStar = function() {
+  			return $star_rating.each(function() {
+    			if (parseInt($star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
+      				return $(this).removeClass('unchecked').addClass('checked');
+    			} else {
+      				return $(this).removeClass('checked').addClass('unchecked');
+    			}
+  			});
+		};
+
+		$star_rating.on('click', function() {
+  			$star_rating.siblings('input.rating-value').val($(this).data('rating'));
+  			return SetRatingStar();
+		});
+
+		SetRatingStar();
+		$(document).ready(function() {
+		});	
+	</script>
 </html>

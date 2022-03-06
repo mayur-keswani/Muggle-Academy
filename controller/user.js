@@ -22,10 +22,13 @@ exports.getIndex = (req, res, next) => {
   let posts;
   let notices;
   let courses;
+  const role = req.user.role;
   Post.find()
     .then((result) => {
       posts = result;
-      return Notice.find();
+      return Notice.find(
+        role === "admin" ? {} : { noticeFor: role || "student" }
+      );
     })
     .then((result) => {
       notices = result;
@@ -143,6 +146,7 @@ const cloudinaryUploader = async (image_path) => {
   });
   return image_url ? image_url : null;
 };
+
 exports.postUserProfile = async (req, res, next) => {
   let profile_pic = req.file ? req.file : null;
   const college = req.body.college;
@@ -309,25 +313,23 @@ exports.getCourseReceipt = (req, res, next) => {
         pdfDoc
           .fontSize(20)
           .text("Receipt", { underline: true, align: "center" });
-        pdfDoc
-          .fontSize(12)
-          .text(
-            new Date(courseDetail.date).toLocaleDateString("en-US", {
-              weekday: "long",
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })
-          );
+        pdfDoc.fontSize(12).text(
+          new Date(courseDetail.date).toLocaleDateString("en-US", {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })
+        );
         pdfDoc.text("  ");
-        
+
         pdfDoc
           .fontSize(14)
           .text(`Subject: Purchase Receipt of ${course.title} Course`, {
             align: "center",
           });
-		pdfDoc.text("  ");
-    	pdfDoc.text("  ");
+        pdfDoc.text("  ");
+        pdfDoc.text("  ");
         const table = {
           title: "",
           subtitle: "",
@@ -337,17 +339,17 @@ exports.getCourseReceipt = (req, res, next) => {
               course.title,
               new Date(courseDetail.date).toLocaleDateString("en-US"),
 
-              "Rs " + courseDetail.price +'/-',
+              "Rs " + courseDetail.price + "/-",
             ],
           ],
         };
         pdfDoc.table(table, {
           // A4 595.28 x 841.89 (portrait) (about width sizes)
-		  layout:'portrait',
+          layout: "portrait",
           width: 500,
           //columnsSize: [ 200, 100, 100 ],
         });
-        
+
         //   pdfDoc.fontSize(12).text(course.content, { align: "left" });
         pdfDoc.text("*Terms and Condition apply");
         pdfDoc.text("  ");
@@ -355,7 +357,6 @@ exports.getCourseReceipt = (req, res, next) => {
 
         //   pdfDoc.text("  ");
 
-        
         //   pdfDoc.fontSize(12).text(notice.userId.username, { align: "left" });
         //   pdfDoc.fontSize(12).text(notice.designation, { underline: true });
         pdfDoc.end();
@@ -385,7 +386,8 @@ exports.getCourseDetail = (req, res, next) => {
         username: req.user ? req.user.username : null,
         course: course,
         amICreator: req.user
-          ? course.creator.toString() === req.user._id.toString()
+          ? course.creator.toString() === req.user._id.toString() ||
+            course.facultyAccess.includes(req.user.email)
           : false,
         isLogin: req.user ? true : false,
         isAlreadyPurchased: isAlreadyPurchased,
