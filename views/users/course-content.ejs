@@ -41,9 +41,14 @@
 
 	</style>
 	<%- include('../includes/navigation.ejs') %>
-
+		<div class="alert alert-success alert-dismissible fade show" role="alert" style="display: none;">
+  			<strong> Thanks for your Feedback </strong>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    			<span aria-hidden="true">&times;</span>
+  			</button>
+		</div>
 		<div class="container-fluid p-1 mt-0  d-flex">
-
+			
 			<div class="box lecture-structure box mx-0 pt-4 px-4" >
 				<h4 class="text-secondary">Syllabus</h4>
 				<!-- Accordian Here -->
@@ -130,11 +135,11 @@
 						<a href="/course-receipt/<%=course._id%>"  type="submit" class="btn btn-outline-info">Click Here</a>
 					</form>
 				</div>
-				<div class="mt-5"> 
+				<div class="mt-5 rating-section"> 
 					<form > 
 						<h4 class="text-secondary">Rate Our Course</h4>
 						<div class="row">
-    						<div class="col-lg-12">
+    						<div class="col-lg-12 d-flex">
       							<div class="star-rating">
         							<span class="fa fa-star unchecked" data-rating="1"></span>
         							<span class="fa fa-star unchecked" data-rating="2"></span>
@@ -143,6 +148,7 @@
         							<span class="fa fa-star unchecked" data-rating="5"></span>
         							<input type="hidden" name="whatever1" class="rating-value" value="2">
       							</div>
+								<span onclick="toggleRating()" class="btn btn-info mx-4"> Submit</span>
     						</div>
   						</div>
 					</form>
@@ -208,6 +214,13 @@
 		});
 
 		SetRatingStar();
+
+		function toggleRating(){
+			let alert=document.querySelector('.alert');
+			let ratingSection=document.querySelector('.rating-section')
+			alert.style.display='block'
+			ratingSection.style.display="none"
+		}
 		$(document).ready(function() {
 		});	
 	</script>
