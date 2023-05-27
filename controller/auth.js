@@ -43,14 +43,12 @@ exports.postLogin = (req, res, next) => {
           })
           .catch((err) => {
             const error = new Error("Couldn't able to Login");
-            ;
             next(error);
           });
       }
     })
     .catch((err) => {
       const error = new Error("Couldn't able to Login");
-      ;
       next(error);
     });
 };
@@ -114,14 +112,12 @@ exports.postSignup = (req, res, next) => {
           })
           .catch((err) => {
             const error = new Error("Couldn't able to Signup");
-            ;
             next(error);
           });
       }
     })
     .catch((err) => {
       const error = new Error("Couldn't able to Signup");
-      ;
       next(error);
     });
 };
@@ -175,9 +171,7 @@ exports.getResetPassword = (req, res) => {
         });
       }
     })
-    .catch((error) => {
-      ;
-    });
+    .catch((error) => {});
 };
 
 exports.postResetPassword = (req, res) => {
@@ -197,14 +191,11 @@ exports.postResetPassword = (req, res) => {
             req.flash("success", "Reset Password Failed!");
             res.redirect(`/reset-password/${req.params.id}`);
           })
-          .catch((error) => {
-            ;
-          });
+          .catch((error) => {});
       }
     })
     .catch((error) => {
       req.flash("error", "Link Expired!");
-      ;
       res.redirect("/login");
     });
 };

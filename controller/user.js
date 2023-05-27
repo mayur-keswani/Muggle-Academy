@@ -22,7 +22,7 @@ exports.getIndex = (req, res, next) => {
   let posts;
   let notices;
   let courses;
-  const role = req.user?req.user.role:'student';
+  const role = req.user ? req.user.role : "student";
   Post.find()
     .then((result) => {
       posts = result;
@@ -47,7 +47,6 @@ exports.getIndex = (req, res, next) => {
     })
     .catch((err) => {
       const error = new Error("Couldn't able to Load");
-      ;
       next(error);
     });
 };
@@ -94,7 +93,6 @@ exports.getNoticeDetail = (req, res) => {
     })
     .catch((err) => {
       const error = new Error("Couldn't able to Load...");
-      ;
       next(error);
     });
 };
@@ -140,7 +138,6 @@ const cloudinaryUploader = async (image_path) => {
       url = result.url;
       return url;
     } else {
-      ;
     }
   });
   return image_url ? image_url : null;
@@ -177,7 +174,6 @@ exports.postUserProfile = async (req, res, next) => {
     })
     .catch((err) => {
       const error = new Error("Couldn't able to update User-Profile");
-      ;
       next(error);
     });
 };
@@ -210,7 +206,6 @@ exports.getNoticeSaved = (req, res, next) => {
     })
     .catch((err) => {
       const error = new Error("Couldn't able to get Saved-Notive");
-      ;
       next(error);
     });
 };
@@ -393,7 +388,6 @@ exports.getCourseDetail = (req, res, next) => {
     })
     .catch((err) => {
       const error = new Error("Couldnt able to fetch Course-Detail");
-      ;
       next(error);
     });
 };
@@ -411,7 +405,6 @@ exports.getMyCourses = (req, res, next) => {
         });
       } else {
         const error = new Error("Couldn't able to get your-course");
-        ;
         next(error);
       }
     });
@@ -450,7 +443,6 @@ exports.getPurchaseCourse = (req, res, next) => {
     })
     .catch((err) => {
       const error = new Error("Couldn't able to Purchase-Course");
-      ;
       next(error);
     });
 };
@@ -509,8 +501,7 @@ exports.postQuestion = (req, res) => {
     .then((result) => {
       res.redirect("/course-content/" + req.params.id);
     })
-    .catch((error) => {
-    });
+    .catch((error) => {});
 };
 
 exports.getAddComment = (req, res, next) => {

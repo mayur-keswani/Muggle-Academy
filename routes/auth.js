@@ -18,8 +18,9 @@ router.post("/reset-password/:id", authController.postResetPassword);
 
 router.get('/logout',(req,res)=>{
 	req.session.destroy(err=>{
-		if(err)
-			
+		if(err){
+
+		}
 		else{
 			res.redirect('/signin')
 		}

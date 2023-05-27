@@ -4,7 +4,7 @@
   "description": "post\r article\r user\r profile",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "nodemon app.js",
     "start-server": "node app.js"
   },
   "engines": {
