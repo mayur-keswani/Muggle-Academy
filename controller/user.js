@@ -47,7 +47,7 @@ exports.getIndex = (req, res, next) => {
     })
     .catch((err) => {
       const error = new Error("Couldn't able to Load");
-      console.log(err);
+      ;
       next(error);
     });
 };
@@ -67,7 +67,6 @@ exports.getNotices = (req, res) => {
           return r;
         }, Object.create(null));
 
-        console.log(result);
         res.render("users/notices", {
           isAdmin: req.user && req.user.role === "admin" ? true : false,
           isAutherized: req.user ? true : false,
@@ -95,7 +94,7 @@ exports.getNoticeDetail = (req, res) => {
     })
     .catch((err) => {
       const error = new Error("Couldn't able to Load...");
-      console.log(err);
+      ;
       next(error);
     });
 };
@@ -141,7 +140,7 @@ const cloudinaryUploader = async (image_path) => {
       url = result.url;
       return url;
     } else {
-      console.log(error);
+      ;
     }
   });
   return image_url ? image_url : null;
@@ -178,7 +177,7 @@ exports.postUserProfile = async (req, res, next) => {
     })
     .catch((err) => {
       const error = new Error("Couldn't able to update User-Profile");
-      console.log(err);
+      ;
       next(error);
     });
 };
@@ -211,7 +210,7 @@ exports.getNoticeSaved = (req, res, next) => {
     })
     .catch((err) => {
       const error = new Error("Couldn't able to get Saved-Notive");
-      console.log(err);
+      ;
       next(error);
     });
 };
@@ -295,7 +294,6 @@ exports.getCourseReceipt = (req, res, next) => {
     (enrolledCourse) => enrolledCourse.courseID.toString() === courseId
   );
   const pathname = path.join("public", "downloaded_notice", "receipt");
-  console.log(courseDetail);
   if (courseDetail) {
     Course.findById(courseDetail.courseID).then((course) => {
       if (course) {
@@ -395,7 +393,7 @@ exports.getCourseDetail = (req, res, next) => {
     })
     .catch((err) => {
       const error = new Error("Couldnt able to fetch Course-Detail");
-      console.log(err);
+      ;
       next(error);
     });
 };
@@ -413,7 +411,7 @@ exports.getMyCourses = (req, res, next) => {
         });
       } else {
         const error = new Error("Couldn't able to get your-course");
-        console.log(err);
+        ;
         next(error);
       }
     });
@@ -448,12 +446,11 @@ exports.getPurchaseCourse = (req, res, next) => {
       user.save();
     })
     .then((result) => {
-      console.log(result);
       res.redirect("/my-courses");
     })
     .catch((err) => {
       const error = new Error("Couldn't able to Purchase-Course");
-      console.log(err);
+      ;
       next(error);
     });
 };
@@ -510,11 +507,9 @@ exports.postQuestion = (req, res) => {
       course.save();
     })
     .then((result) => {
-      console.log("Question Post Successfully");
       res.redirect("/course-content/" + req.params.id);
     })
     .catch((error) => {
-      console.log("Cant able to post question : " + error);
     });
 };
 

@@ -43,14 +43,14 @@ exports.postLogin = (req, res, next) => {
           })
           .catch((err) => {
             const error = new Error("Couldn't able to Login");
-            console.log(err);
+            ;
             next(error);
           });
       }
     })
     .catch((err) => {
       const error = new Error("Couldn't able to Login");
-      console.log(err);
+      ;
       next(error);
     });
 };
@@ -72,14 +72,11 @@ exports.postSignup = (req, res, next) => {
   const role = req.body.role;
   if (role === "admin" || role === "faculty") {
     const root_password = req.body.root_password;
-    console.log(root_password);
     if (root_password && role === "admin" && root_password !== "admin123") {
       req.flash("error", "Admin Credential Failed");
       return res.redirect("/signup");
     }
     if (root_password && role === "faculty" && root_password !== "faculty123") {
-      console.log("HERE");
-
       req.flash("error", "Faculty Credientials Failed");
       return res.redirect("/signup");
     }
@@ -100,13 +97,11 @@ exports.postSignup = (req, res, next) => {
               password: hashedPassword,
               role: role,
             });
-            console.log(user);
             return user.save();
           })
           .then((user) => {
             req.session.isLoggedIn = true;
             req.session.user = user;
-            console.log("SignUp successfully");
 
             const profile = new Profile({
               userId: user._id,
@@ -119,14 +114,14 @@ exports.postSignup = (req, res, next) => {
           })
           .catch((err) => {
             const error = new Error("Couldn't able to Signup");
-            console.log(err);
+            ;
             next(error);
           });
       }
     })
     .catch((err) => {
       const error = new Error("Couldn't able to Signup");
-      console.log(err);
+      ;
       next(error);
     });
 };
@@ -147,7 +142,6 @@ exports.postForgetPassword = (req, res) => {
   User.findOne({ email: email })
     .then((user) => {
       if (user) {
-        console.log(user);
         res.redirect(`/reset-password/${user._id}`);
       }
     })
@@ -182,7 +176,7 @@ exports.getResetPassword = (req, res) => {
       }
     })
     .catch((error) => {
-      console.log(error);
+      ;
     });
 };
 
@@ -196,7 +190,6 @@ exports.postResetPassword = (req, res) => {
         bcrypt
           .hash(password, 12)
           .then((hashedPassword) => {
-            console.log(hashedPassword);
             user.password = hashedPassword;
             return user.save();
           })
@@ -205,13 +198,13 @@ exports.postResetPassword = (req, res) => {
             res.redirect(`/reset-password/${req.params.id}`);
           })
           .catch((error) => {
-            console.log(error);
+            ;
           });
       }
     })
     .catch((error) => {
       req.flash("error", "Link Expired!");
-      console.log(error);
+      ;
       res.redirect("/login");
     });
 };

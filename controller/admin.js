@@ -48,9 +48,7 @@ exports.postUploadPost=(req,res,next)=>{
 					  })
 					  .catch(err=>{
 						  const error=new Error("Couldn't able to Upload-Post ")
-						  console.log(err);
 						  next(error)
-							  
 						})
 				
 			})
@@ -90,7 +88,6 @@ exports.postIssueNotice=(req,res,next)=>{
 		})
 		.catch(err=>{
 			const error=new Error("Couldn't able to Upload-Notice ")
-			console.log(err)
 			next(error)
 			
 		})
@@ -120,7 +117,6 @@ exports.postLaunchCourse=(req,res,next)=>{
 
 	cloudinary.v2.uploader.upload(thumbnail,(error,result)=>{
 		
-		console.log(result +": result")
 		deleteFileHandler.deleteFileHandler(thumbnail)
 		const course = new Course({
       creator: req.user,
@@ -139,7 +135,7 @@ exports.postLaunchCourse=(req,res,next)=>{
 		})
 		.catch(err=>{
 			const error=new Error("Couldn't able to Create-Course")
-			console.log(err)
+			
 			next(error)
 		})
 	})
@@ -158,11 +154,12 @@ exports.getUploadVideo=(req,res,next)=>{
 					username:(req.user)? req.user.username :null
 				})
 			}else{
-				console.log("You are not autherized")
+				//TODO:
+				// console.log("You are not autherized")
 			}
 		}).catch(err=>{
 			const error=new Error("Couldn't able to get Uploaded-Video ")
-			console.log(err)
+			
 			next(error)
 		})
 }
@@ -178,12 +175,9 @@ exports.postUploadVideo=(req,res,next)=>{
 	
 	// video_url=await cloudinaryUploader(uploaded_video.path)
 		
-	console.log(uploaded_video)
 	cloudinary.v2.uploader.upload(uploaded_video.path,{resource_type: "video"},function(error,result){
 		if(result){
-			console.log("CLOUDINARI INTIGRATED SUCCESSFULLY")
 			video_url=result.url
-			console.log(video_url)
 			const video=new Video({
 				courseID:id,
 				title:title,
@@ -199,8 +193,6 @@ exports.postUploadVideo=(req,res,next)=>{
 				})
 				.then(course=>{
 					if(section==='Basic'){
-						console.log(course.content);
-						console.log(course.basic);
 						course.content.basic.push(video._id)
 					}
 					else if(section==='Intermediate'){
@@ -217,12 +209,12 @@ exports.postUploadVideo=(req,res,next)=>{
 					res.redirect('/')
 				})
 				.catch(error=>{
-					console.log(error)
+					
 				})
 		}	
 		else{			
 			const error=new Error("Couldn't able to Upload your Video")
-			console.log(error)
+			
 			next(error)
 		}
 
