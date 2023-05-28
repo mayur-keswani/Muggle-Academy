@@ -12,7 +12,7 @@ const compression = require("compression");
 const cloudinary = require("cloudinary");
 
 require("dotenv").config("./.env");
-let db = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@cluster0.tcppjff.mongodb.net/?retryWrites=true&w=majority`;
+let db = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@cluster0.${process.env.MONGODB_CLUSTER_ID}.mongodb.net/?retryWrites=true&w=majority`;
 // let db= `mongodb+srv://${process.env.Mongo_USER}:${process.env.Mongo_PASSWORD}@cluster0.gpz6t.mongodb.net/NoticeBoard?retryWrites=true&w=majority`
 // Cloud_NAME= process.env.Cloud_NAME
 
